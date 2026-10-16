@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b18">
+<title>AzDar Web Studio | Your Vision, Our Code</title>
+<meta name="description" content="Professional websites, Shopify store design and digital services by AzDar Web Studio.">
+
+<style>
+:root {
+  --bg:#080b18;
+  --panel:#10162a;
+  --text:#f5f7ff;
+  --muted:#aab3cc;
+  --purple:#a855f7;
+  --cyan:#22d3ee;
+  --border:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.65;overflow-x:hidden;transition:.3s}
+body.light{--bg:#f5f7ff;--panel:#fff;--text:#111827;--muted:#5c6478;--border:rgba(0,0,0,.13)}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
+.gradient{background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.navbar{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
+.nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:21px;font-weight:900;letter-spacing:-.7px}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--cyan)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 19px;border:0;border-radius:10px;font-weight:700;transition:.25s}
+.btn-primary{background:linear-gradient(110deg,var(--purple),#6d5dfc,var(--cyan));color:white;box-shadow:0 8px 28px #7c3aed30}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px #22d3ee35}
+.btn-outline{border:1px solid var(--border);background:var(--panel);color:var(--text)}
+.theme-btn{border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:10px;padding:10px 12px}
+.hero{padding:85px 0 75px;position:relative;isolation:isolate}
+.hero:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:#9333ea20;filter:blur(90px);top:5px;left:-100px;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.tag{display:inline-block;padding:7px 12px;border:1px solid #a855f750;background:#a855f715;color:var(--cyan);border-radius:50px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+h1{font-size:clamp(38px,5.5vw,66px);line-height:1.12;letter-spacing:-2px;margin:20px 0}
+.hero p,.section-intro{color:var(--muted);font-size:17px;max-width:600px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-note{color:var(--muted);font-size:13px;margin-top:20px}
+.device-wrap{position:relative;padding:18px;animation:float 5s ease-in-out infinite}
+.device-glow{position:absolute;inset:15%;background:linear-gradient(135deg,var(--purple),var(--cyan));filter:blur(70px);opacity:.25;z-index:-1}
+.laptop{border:1px solid #ffffff35;background:#151a2c;border-radius:17px;padding:12px;box-shadow:0 25px 80px #0006;transform:perspective(900px) rotateY(-5deg)}
+.laptop-screen{border-radius:9px;min-height:310px;background:linear-gradient(145deg,#11172c,#20123d);padding:20px;overflow:hidden}
+.screen-top{display:flex;gap:5px;margin-bottom:26px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--purple)}
+.screen-label{font-size:11px;color:var(--cyan);letter-spacing:2px}
+.screen-title{font-size:29px;line-height:1.2;margin:12px 0}
+.screen-lines{height:7px;border-radius:8px;background:#ffffff20;margin:10px 0;width:80%}
+.screen-lines.short{width:52%}
+.screen-card-row{display:flex;gap:9px;margin-top:24px}
+.screen-card{height:75px;flex:1;border:1px solid #ffffff20;border-radius:10px;background:linear-gradient(140deg,#a855f725,#22d3ee12)}
+.laptop-base{height:12px;margin:0 -15px;background:linear-gradient(90deg,#34394d,#a1a8bc,#34394d);border-radius:2px 2px 15px 15px}
+section{padding:76px 0}
+.section-head{text-align:center;margin-bottom:38px}
+.section-head h2{font-size:clamp(29px,4vw,43px);line-height:1.2;margin-bottom:12px}
+.section-head p{color:var(--muted);max-width:650px;margin:auto}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.service-card,.info-card,.contact-card,.admin-card{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:25px;transition:transform .25s,border-color .25s}
+.service-card:hover,.info-card:hover{transform:translateY(-5px);border-color:#a855f780}
+.service-icon{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#a855f730,#22d3ee20);display:grid;place-items:center;font-size:24px;margin-bottom:18px}
+.service-card h3,.info-card h3{font-size:19px;margin-bottom:9px}
+.service-card p,.info-card p{font-size:14px;color:var(--muted)}
+.section-alt{background:linear-gradient(180deg,transparent,#12152a55,transparent)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.about-copy h2{font-size:clamp(30px,4vw,43px);line-height:1.2;margin-bottom:18px}
+.about-copy p{color:var(--muted);margin-bottom:14px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{padding:24px;border:1px solid var(--border);border-radius:15px;background:var(--panel)}
+.stat strong{font-size:28px;display:block;color:var(--cyan)}
+.stat span{font-size:13px;color:var(--muted)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.feature-icon{font-size:24px;margin-bottom:12px}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+.contact-list{display:grid;gap:14px;margin-top:24px}
+.contact-item{padding:15px;border:1px solid var(--border);border-radius:12px;overflow-wrap:anywhere}
+.contact-item small{display:block;color:var(--muted)}
+.contact-form{display:grid;gap:13px}
+.field{width:100%;padding:13px 14px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:10px;outline:none}
+.field:focus{border-color:var(--cyan)}
+textarea.field{min-height:120px;resize:vertical}
+.cta{padding:35px;border-radius:20px;text-align:center;background:linear-gradient(120deg,#7c3aed30,#0891b230);border:1px solid var(--border)}
+.cta h2{font-size:clamp(27px,4vw,38px);margin-bottom:10px}
+.cta p{color:var(--muted);margin-bottom:20px}
+.admin-section{display:none}
+.admin-section.show{display:block}
+.admin-row{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:15px}
+.admin-controls{display:grid;gap:12px;margin-top:20px}
+.admin-list{display:grid;gap:10px;margin-top:20px}
+.admin-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;border:1px solid var(--border);border-radius:10px}
+.admin-item button{padding:6px 10px}
+footer{padding:30px 0;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.whatsapp-float{position:fixed;right:18px;bottom:18px;z-index:90;width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:#20c970;color:white;font-size:25px;box-shadow:0 8px 30px #0005}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:850px){
+ .nav-links{gap:12px}.nav-links a{font-size:12px}
+ .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+ .hero{padding-top:55px}.device-wrap{max-width:540px;margin:auto;width:100%}
+ .grid,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ .nav-inner{padding:12px 0;flex-wrap:wrap;gap:10px}
+ .logo{font-size:18px}.nav-links{order:3;width:100%;justify-content:space-between;gap:8px}
+ .nav-actions{margin-left:auto}.nav-links a{font-size:11px}
+ .hero{padding:45px 0}.hero-grid{gap:30px}h1{letter-spacing:-1px}
+ section{padding:55px 0}.grid,.feature-grid{grid-template-columns:1fr}
+ .service-card,.info-card,.contact-card,.admin-card{padding:20px}
+ .laptop-screen{min-height:255px;padding:15px}.screen-title{font-size:25px}
+ .cta{padding:25px 18px}.stat{padding:17px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="logo" href="#home">AzDar <span class="gradient">Web Studio</span></a>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">☀️</button>
+      <a class="btn btn-primary" href="#contact">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <span class="tag">Creative Digital Solutions</span>
+      <h1>Build Your Business <span class="gradient">Online.</span></h1>
+      <p>Hum aapke business ke liye professional websites aur digital solutions design karte hain. Apne idea ko ek modern online identity dein.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#contact">Start Your Project ↗</a>
+        <a class="btn btn-outline" href="#services">Explore Services</a>
+      </div>
+      <p class="hero-note">✦ Modern Design &nbsp; ✦ Mobile Friendly &nbsp; ✦ Custom Solutions</p>
+    </div>
+    <div class="device-wrap reveal">
+      <div class="device-glow"></div>
+      <div class="laptop">
+        <div class="laptop-screen">
+          <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="screen-label">AZDAR DIGITAL EXPERIENCE</div>
+          <div class="screen-title">Your Vision.<br><span class="gradient">Our Code.</span></div>
+          <div class="screen-lines"></div>
+          <div class="screen-lines short"></div>
+          <div class="screen-card-row"><div class="screen-card"></div><div class="screen-card"></div><div class="screen-card"></div></div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">What We Do</span>
+      <h2>Our <span class="gradient">Digital Services</span></h2>
+      <p>Aapke business ko online grow karne ke liye creative aur professional services.</p>
+    </div>
+    <div class="grid" id="servicesGrid">
+      <article class="service-card reveal">
+        <div class="service-icon">🌐</div>
+        <h3>Business Websites</h3>
+        <p>Professional aur mobile-friendly websites jo aapke brand ko online represent karein.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">🛍️</div>
+        <h3>Shopify Store Design</h3>
+        <p>Modern Shopify storefront design, product layouts aur polished shopping experience.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <h3>Social Media Services</h3>
+        <p>Social media presence aur business profiles ko professional look dene mein madad.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">🎨</div>
+        <h3>Custom Web Design</h3>
+        <p>Aapke idea, requirements aur brand ke mutabiq custom website layouts.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">📣</div>
+        <h3>Digital Marketing Creatives</h3>
+        <p>Online promotions ke liye attractive post designs aur advertising creatives.</p>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">⚡</div>
+        <h3>Website Improvements</h3>
+        <p>Existing website ke layout, responsive design aur user experience mein improvements.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <span class="tag">About Our Studio</span>
+      <h2>Ideas Ko Banayein <span class="gradient">Digital Reality</span></h2>
+      <p>Welcome to AzDar Web Studio! Hamara goal businesses aur individuals ko ek professional online presence banane mein help karna hai.</p>
+      <p>Hum clean layouts, modern visuals aur mobile-friendly design par focus karte hain, taake aapki website different devices par achi nazar aaye.</p>
+      <p><strong>AzDar Web Studio — Your Vision, Our Code.</strong></p>
+      <a class="btn btn-primary" href="#contact">Let's Talk About Your Project</a>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat"><strong>01</strong><span>Personalized Approach</span></div>
+      <div class="stat"><strong>02</strong><span>Modern Visual Design</span></div>
+      <div class="stat"><strong>03</strong><span>Responsive Layouts</span></div>
+      <div class="stat"><strong>04</strong><span>Client-Focused Work</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Why AzDar</span>
+      <h2>Designed for Your <span class="gradient">Business</span></h2>
+      <p>Har project ka maqsad ek clear, attractive aur useful online experience banana hai.</p>
+    </div>
+    <div class="feature-grid">
+      <article class="info-card reveal">
+        <div class="feature-icon">📲</div>
+        <h3>Mobile Friendly</h3>
+        <p>Design jo mobile, tablet aur desktop screens ke mutabiq adjust hota hai.</p>
+      </article>
+      <article class="info-card reveal">
+        <div class="feature-icon">✨</div>
+        <h3>Modern Look</h3>
+        <p>Clean typography, balanced spacing aur contemporary visual styling.</p>
+      </article>
+      <article class="info-card reveal">
+        <div class="feature-icon">🤝</div>
+        <h3>Direct Communication</h3>
+        <p>Apni requirements seedha share karein aur project details discuss karein.</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="tag">Get In Touch</span>
+      <h2>Let's Build Something <span class="gradient">Great</span></h2>
+      <p>Apne project ki details bhejein. Hum WhatsApp par aapka message open kar denge.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <h3>Contact AzDar Web Studio</h3>
+        <p style="color:var(--muted);margin-top:8px">Website ya digital service ke liye rabta karein.</p>
+        <div class="contact-list">
+          <div class="contact-item">💬 <strong>WhatsApp</strong><small>0300 2867506</small></div>
+          <div class="contact-item">✉️ <strong>Email</strong><small>azdarwattoo@gmail.com</small></div>
+          <div class="contact-item">🌐 <strong>Services</strong><small>Web design and digital solutions</small></div>
+        </div>
+        <a class="btn btn-primary" style="margin-top:20px" href="https://wa.me/923002867506" target="_blank" rel="noopener">Chat on WhatsApp ↗</a>
+      </div>
+      <div class="contact-card reveal">
+        <form class="contact-form" id="contactForm">
+          <input class="field" id="clientName" placeholder="Your Name" required>
+          <input class="field" id="clientEmail" type="email" placeholder="Your Email (optional)">
+          <select class="field" id="clientService" required>
+            <option value="">Select a Service</option>
+            <option>Business Website</option>
+            <option>Shopify Store Design</option>
+            <option>Social Media Services</option>
+            <option>Custom Web Design</option>
+            <option>Digital Marketing Creatives</option>
+            <option>Website Improvements</option>
+            <option>Other Project</option>
+          </select>
+          <textarea class="field" id="clientMessage" placeholder="Tell us about your project..." required></textarea>
+          <button class="btn btn-primary" type="submit">Send Message on WhatsApp ↗</button>
+          <small style="color:var(--muted)">Aapka message WhatsApp mein khulega. Send karne se pehle aap usay review kar sakte hain.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta reveal">
+      <h2>Your Next Idea Starts <span class="gradient">Here.</span></h2>
+      <p>Apne business ke liye professional online presence banane ke liye aaj rabta karein.</p>
+      <a class="btn btn-primary" href="https://wa.me/923002867506" target="_blank" rel="noopener">Discuss Your Project ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="admin" class="admin-section">
+  <div class="container">
+    <div class="admin-card">
+      <div class="admin-row">
+        <div><span class="tag">Demo Admin</span><h2 style="margin-top:12px">Service Manager</h2></div>
+        <button class="btn btn-outline" id="adminLogout" type="button">Close Admin</button>
+      </div>
+      <p style="color:var(--muted)">Yeh demo panel services ko isi browser mein save karta hai. Yeh secure online admin system nahi hai.</p>
+      <form id="serviceForm" class="admin-controls">
+        <input class="field" id="newServiceName" placeholder="New service name" required>
+        <textarea class="field" id="newServiceDescription" placeholder="Service description" required></textarea>
+        <button class="btn btn-primary" type="submit">Add Service</button>
+      </form>
+      <div id="adminServices" class="admin-list"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> AzDar Web Studio. All rights reserved.</span>
+    <span>Your Vision, Our Code. | Created by Azmat Ali</span>
+    <a href="#admin" id="adminLink">Admin Demo</a>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/923002867506" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+
+<script>
+const WHATSAPP_NUMBER = "923002867506";
+
+// Footer year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Dark / light theme
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  themeToggle.textContent = document.body.classList.contains("light") ? "🌙" : "☀️";
+});
+
+// Scroll reveal animations
+const revealItems = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealItems.forEach(item => observer.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
+
+// Contact form opens WhatsApp with the project details
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("clientName").value.trim();
+  const email = document.getElementById("clientEmail").value.trim();
+  const service = document.getElementById("clientService").value;
+  const message = document.getElementById("clientMessage").value.trim();
+
+  const text = [
+    "Assalam-o-Alaikum AzDar Web Studio!",
+    "",
+    "Name: " + name,
+    "Email: " + (email || "Not provided"),
+    "Required Service: " + service,
+    "Project Details: " + message
+  ].join("\n");
+
+  window.open(
+    "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text),
+    "_blank",
+    "noopener"
+  );
+});
+
+// Demo admin panel: press Admin Demo in the footer
+const adminSection = document.getElementById("admin");
+const adminLink = document.getElementById("adminLink");
+const adminLogout = document.getElementById("adminLogout");
+const serviceForm = document.getElementById("serviceForm");
+const adminServices = document.getElementById("adminServices");
+const servicesGrid = document.getElementById("servicesGrid");
+
+const defaultServices = [
+  {
+    name: "Business Websites",
+    description: "Professional aur mobile-friendly websites jo aapke brand ko online represent karein."
+  },
+  {
+    name: "Shopify Store Design",
+    description: "Modern Shopify storefront design, product layouts aur polished shopping experience."
+  },
+  {
+    name: "Social Media Services",
+    description: "Social media presence aur business profiles ko professional look dene mein madad."
+  },
+  {
+    name: "Custom Web Design",
+    description: "Aapke idea, requirements aur brand ke mutabiq custom website layouts."
+  },
+  {
+    name: "Digital Marketing Creatives",
+    description: "Online promotions ke liye attractive post designs aur advertising creatives."
+  },
+  {
+    name: "Website Improvements",
+    description: "Existing website ke layout, responsive design aur user experience mein improvements."
+  }
+];
+
+let services = defaultServices.map(item => ({...item}));
+
+try {
+  const saved = localStorage.getItem("azdarDemoServices");
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    if (Array.isArray(parsed)) services = parsed;
+  }
+} catch (error) {
+  console.warn("Saved demo services could not be loaded.");
+}
+
+function saveServices() {
+  try {
+    localStorage.setItem("azdarDemoServices", JSON.stringify(services));
+  } catch (error) {
+    alert("Browser storage available nahi. Changes save nahi ho sake.");
+  }
+}
+
+function renderServices() {
+  servicesGrid.innerHTML = "";
+
+  services.forEach(service => {
+    const card = document.createElement("article");
+    card.className = "service-card reveal";
+
+    const icon = document.createElement("div");
+    icon.className = "service-icon";
+    icon.textContent = "✦";
+
+    const title = document.createElement("h3");
+    title.textContent = service.name;
+
+    const description = document.createElement("p");
+    description.textContent = service.description;
+
+    card.append(icon, title, description);
+    servicesGrid.appendChild(card);
+  });
+
+  adminServices.innerHTML = "";
+
+  services.forEach((service, index) => {
+    const row = document.createElement("div");
+    row.className = "admin-item";
+
+    const title = document.createElement("span");
+    title.textContent = service.name;
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "btn btn-outline";
+    remove.textContent = "Delete";
+
+    remove.addEventListener("click", () => {
+      if (confirm("Is service ko demo list se delete karna hai?")) {
+        services.splice(index, 1);
+        saveServices();
+        renderServices();
+      }
+    });
+
+    row.append(title, remove);
+    adminServices.appendChild(row);
+  });
+}
+
+adminLink.addEventListener("click", event => {
+  event.preventDefault();
+
+  const passcode = prompt("Demo admin passcode enter karein:");
+  if (passcode === "AZDAR2026") {
+    adminSection.classList.add("show");
+    adminSection.scrollIntoView({behavior: "smooth"});
+  } else if (passcode !== null) {
+    alert("Passcode match nahi hua.");
+  }
+});
+
+adminLogout.addEventListener("click", () => {
+  adminSection.classList.remove("show");
+});
+
+serviceForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("newServiceName").value.trim();
+  const description = document.getElementById("newServiceDescription").value.trim();
+
+  if (!name || !description) return;
+
+  services.push({name, description});
+  saveServices();
+  renderServices();
+  serviceForm.reset();
+  alert("Service demo list mein add ho gayi.");
+});
+
+renderServices();
+</script>
+
+</body>
+</html>
