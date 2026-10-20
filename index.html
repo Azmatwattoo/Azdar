@@ -1,1267 +1,608 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080914">
-<meta name="description" content="AzDar Web Studio creates professional websites, Shopify stores and digital solutions for businesses.">
+<meta name="description" content="AzDar Web Studio — professional websites, Shopify store design and digital services.">
 <title>AzDar Web Studio | Your Vision, Our Code</title>
-
 <style>
-:root {
-  --bg: #080914;
-  --panel: #111426;
-  --text: #f6f7ff;
-  --muted: #a8adc7;
-  --purple: #a855f7;
-  --cyan: #42e8ff;
-  --line: rgba(255,255,255,.11);
+:root{
+ --bg:#080914;--panel:#111426;--panel2:#171a30;
+ --text:#f6f7ff;--muted:#a8adc7;--purple:#a855f7;
+ --cyan:#42e8ff;--line:rgba(255,255,255,.13);
+ --glow:0 0 35px rgba(168,85,247,.18);
 }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+ font-family:Inter,system-ui,-apple-system,Arial,sans-serif;
+ background:var(--bg);color:var(--text);line-height:1.65;
+ overflow-x:hidden
 }
-
-html {
-  scroll-behavior: smooth;
+body:before{
+ content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+ background:
+ radial-gradient(ellipse at 10% 10%,rgba(168,85,247,.15),transparent 38%),
+ radial-gradient(ellipse at 90% 30%,rgba(66,232,255,.09),transparent 34%),
+ radial-gradient(ellipse at 50% 100%,rgba(168,85,247,.1),transparent 40%)
 }
-
-body {
-  font-family: Inter, system-ui, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
+body:after{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ opacity:.13;background-image:radial-gradient(#aab0ff .7px,transparent .7px);
+ background-size:27px 27px;mask-image:linear-gradient(to bottom,black,transparent 90%)
 }
-
-body:before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(ellipse at 15% 10%,
-      rgba(135,50,235,.17), transparent 34%),
-    radial-gradient(ellipse at 85% 28%,
-      rgba(22,203,235,.12), transparent 32%),
-    linear-gradient(180deg,#080914,#0a0c19 60%,#080914);
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}
+section{padding:90px 0;position:relative}
+.section-head{max-width:680px;margin:0 auto 38px;text-align:center}
+.eyebrow{
+ display:inline-flex;gap:8px;align-items:center;color:var(--cyan);
+ font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.section-head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.12;margin:12px 0}
+.section-head p,.muted{color:var(--muted)}
+.gradient-text{
+ background:linear-gradient(100deg,#fff 5%,var(--cyan) 45%,#c58aff 85%);
+ -webkit-background-clip:text;background-clip:text;color:transparent
 }
-
-button, a {
-  -webkit-tap-highlight-color: transparent;
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ padding:13px 20px;border:1px solid var(--line);border-radius:12px;
+ color:var(--text);background:rgba(255,255,255,.045);font-weight:750;
+ transition:transform .25s,border-color .25s,box-shadow .25s,background .25s
 }
-
-.wrap {
-  width: min(1140px, 92%);
-  margin: auto;
+.btn-primary{
+ color:#090a16;border:0;background:linear-gradient(110deg,var(--cyan),#b9a0ff,var(--purple));
+ background-size:180% 180%;animation:gradientShift 5s ease infinite;
+ box-shadow:0 8px 28px rgba(66,232,255,.15)
 }
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(8,9,20,.88);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+.btn:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 10px 30px #42e8ff18}
+.btn-primary:hover{box-shadow:0 10px 35px #a855f750}
+.btn-small{padding:9px 13px;font-size:.86rem}
+.grid{display:grid;gap:20px}
+.card{
+ background:linear-gradient(145deg,rgba(24,27,49,.92),rgba(12,14,29,.95));
+ border:1px solid var(--line);border-radius:20px;padding:24px;
+ box-shadow:var(--glow);transition:transform .35s,border-color .35s,box-shadow .35s
 }
-
-.nav {
-  height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+.card:hover{transform:translateY(-7px);border-color:#a855f77a;box-shadow:0 18px 48px #a855f71b}
+.pill{
+ display:inline-flex;padding:5px 10px;border:1px solid #42e8ff40;
+ border-radius:999px;color:var(--cyan);font-size:.75rem;font-weight:750
 }
-
-.brand {
-  font-size: 1.12rem;
-  font-weight: 850;
-  letter-spacing: -.5px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.site-header{
+ position:sticky;top:0;z-index:50;background:#080914dc;
+ border-bottom:1px solid var(--line);backdrop-filter:blur(18px)
 }
-
-.logo {
-  width: 39px;
-  height: 39px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg,var(--purple),var(--cyan));
-  color: #090a17;
-  font-weight: 950;
-  box-shadow: 0 0 24px #a855f755;
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.5px}
+.brand-mark{
+ width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+ background:linear-gradient(135deg,var(--purple),var(--cyan));color:#080914;
+ box-shadow:0 0 25px #a855f744;font-weight:1000
 }
-
-.gradient {
-  background: linear-gradient(100deg,#c79aff 5%,#fff 42%,#52eaff 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.brand small{display:block;color:var(--muted);font-size:.65rem;letter-spacing:1.4px}
+.nav-links{display:flex;align-items:center;gap:20px;font-size:.9rem;color:#d6d9ef}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.menu-toggle{display:none}
+.hero{min-height:690px;display:flex;align-items:center;padding:75px 0 65px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:35px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,5.1rem);line-height:1.02;letter-spacing:-2px;margin:20px 0}
+.hero-copy{font-size:1.04rem;color:var(--muted);max-width:580px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
+.hero-points{display:flex;flex-wrap:wrap;gap:17px;color:#c5c9e2;font-size:.83rem}
+.hero-points span:before{content:"✦";color:var(--cyan);margin-right:7px}
+.hero-visual{position:relative;min-height:380px;display:grid;place-items:center;perspective:1000px}
+.orbit{
+ position:absolute;width:310px;height:310px;border:1px solid #a855f747;
+ border-radius:50%;animation:orbitSpin 18s linear infinite
 }
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  color: #c6c9dc;
-  font-size: .92rem;
+.orbit:before,.orbit:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+.orbit:before{top:42px;left:40px}.orbit:after{right:18px;bottom:76px;background:var(--purple);box-shadow:0 0 18px var(--purple)}
+.laptop{position:relative;width:min(100%,450px);animation:laptopFloat 5s ease-in-out infinite;transform-style:preserve-3d}
+.laptop-screen{
+ aspect-ratio:1.52;background:linear-gradient(145deg,#1c2140,#080b17);
+ border:7px solid #34374e;border-bottom-width:10px;border-radius:15px 15px 5px 5px;
+ padding:15px;box-shadow:0 0 40px #a855f729, inset 0 0 30px #42e8ff08
 }
-
-nav a:hover {
-  color: var(--cyan);
+.screen-top{display:flex;gap:5px;margin-bottom:15px}
+.screen-top i{width:7px;height:7px;border-radius:50%;background:#ff729e}
+.screen-top i:nth-child(2){background:#ffc857}.screen-top i:nth-child(3){background:var(--cyan)}
+.screen-layout{display:grid;grid-template-columns:1fr .75fr;gap:12px;height:calc(100% - 25px)}
+.screen-block{border:1px solid #42e8ff30;border-radius:8px;padding:12px;background:#42e8ff08}
+.screen-line{height:7px;border-radius:8px;background:linear-gradient(90deg,var(--purple),var(--cyan));margin:9px 0;width:85%;animation:linePulse 3s ease-in-out infinite}
+.screen-line.short{width:48%}.screen-line.mid{width:67%}
+.screen-art{height:70px;border-radius:7px;margin:12px 0;background:linear-gradient(130deg,#a855f7,#42e8ff);animation:artGlow 4s ease-in-out infinite alternate}
+.laptop-base{height:13px;background:linear-gradient(#b7bbd0,#51556e);margin:0 -22px;border-radius:0 0 45% 45%;box-shadow:0 12px 22px #0008}
+.floating-chip{
+ position:absolute;padding:11px 14px;border-radius:12px;border:1px solid #42e8ff55;
+ background:#111426eF;box-shadow:0 8px 30px #0005;font-size:.8rem;font-weight:800;
+ animation:chipFloat 4s ease-in-out infinite
 }
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 12px 18px;
-  border-radius: 12px;
-  background: linear-gradient(110deg,var(--purple),#6d6bff 55%,#19cde8);
-  color: white;
-  font-weight: 800;
-  border: 0;
-  box-shadow: 0 8px 28px #6e4bff30;
-  transition: .25s;
-  cursor: pointer;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 34px #38dffb38;
-}
-
-.btn.ghost {
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--line);
-  box-shadow: none;
-}
-
-.menu {
-  display: none;
-  background: none;
-  color: white;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 8px 11px;
-  font-size: 1.2rem;
-}
-
-.hero {
-  min-height: 650px;
-  display: grid;
-  grid-template-columns: 1.03fr .97fr;
-  align-items: center;
-  gap: 45px;
-  padding: 70px 0 80px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 12px;
-  border: 1px solid #a855f74d;
-  border-radius: 99px;
-  color: #d9c1ff;
-  background: #a855f710;
-  font-size: .82rem;
-  margin-bottom: 22px;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
-}
-
-h1 {
-  font-size: clamp(2.7rem,5.4vw,4.7rem);
-  line-height: 1.04;
-  letter-spacing: -2.5px;
-  margin-bottom: 22px;
-}
-
-.hero p {
-  max-width: 550px;
-  color: var(--muted);
-  font-size: 1.06rem;
-  margin-bottom: 28px;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.trust {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-  margin-top: 32px;
-  color: #b7bdd4;
-  font-size: .84rem;
-}
-
-.trust span:before {
-  content: "✓";
-  color: var(--cyan);
-  margin-right: 7px;
-  font-weight: 900;
-}
+.chip-one{top:28px;right:0}.chip-two{bottom:28px;left:0;animation-delay:-2s}
+.rotating-service{display:inline-block;min-width:8ch;color:var(--cyan);transition:opacity .3s,transform .3s}
+.hero-bottom{margin-top:35px;padding-top:23px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.83rem}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@keyframes laptopFloat{0%,100%{transform:translateY(0) rotateY(-3deg)}50%{transform:translateY(-12px) rotateY(3deg)}}
+@keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes linePulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes artGlow{from{filter:hue-rotate(0deg);transform:scale(.98)}to{filter:hue-rotate(30deg);transform:scale(1)}}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes revealUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.float-icon{animation:chipFloat 4s ease-in-out infinite}
 </style>
 </head>
-
-<body>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#home">
-      <span class="logo">AZ</span>
-      <span>AzDar <span class="gradient">Web Studio</span></span>
-    </a>
-
-    <nav id="nav">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About Us</a>
-      <a href="#process">Our Process</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <a class="btn" href="#contact">Start a Project ↗</a>
-    <button class="menu" id="menu">☰</button>
-  </div>
+  <body>
+<header class="site-header">
+ <div class="container nav">
+  <a class="brand" href="#home" aria-label="AzDar Web Studio home">
+   <span class="brand-mark">AZ</span>
+   <span>AzDar Web Studio<small>YOUR VISION, OUR CODE</small></span>
+  </a>
+  <button class="btn btn-small menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+  <nav class="nav-links" id="navLinks">
+   <a href="#home">Home</a><a href="#portfolio">Portfolio</a>
+   <a href="#services">Services</a><a href="#pricing">Pricing</a>
+   <a href="#reviews">Reviews</a><a href="#contact" class="btn btn-small">Get a Quote ↗</a>
+  </nav>
+ </div>
 </header>
 
 <main>
-<section class="wrap hero" id="home">
-  <div>
-    <div class="eyebrow">
-      <span class="dot"></span>
-      DIGITAL SOLUTIONS FOR YOUR BUSINESS
+<section class="hero" id="home">
+ <div class="container">
+  <div class="hero-grid">
+   <div class="reveal">
+    <span class="pill">✦ DIGITAL EXPERIENCES, BUILT WITH PURPOSE</span>
+    <h1>We build websites that make your <span class="gradient-text">business stand out.</span></h1>
+    <p class="hero-copy">From professional business websites to Shopify store design, we help turn your ideas into a polished online presence.</p>
+    <div class="hero-actions">
+     <a class="btn btn-primary" href="#order">Start Your Project ↗</a>
+     <a class="btn" href="#portfolio">Explore Our Work ↓</a>
     </div>
-
-    <h1>
-      We Build Your<br>
-      <span class="gradient" id="heroService">Dream Website.</span>
-    </h1>
-
-    <p>
-      Professional websites and digital experiences designed
-      to help your business look better, reach more people,
-      and grow online.
-    </p>
-
-    <div class="actions">
-      <a class="btn" href="#contact">Let's Build Together ↗</a>
-      <a class="btn ghost" href="#services">Explore Services ↓</a>
+    <div class="hero-points">
+     <span>Mobile-friendly design</span><span>Custom layouts</span><span>Clear communication</span>
     </div>
-
-    <div class="trust">
-      <span>Mobile-friendly designs</span>
-      <span>Custom solutions</span>
-      <span>Personal support</span>
-    </div>
-  </div>
-
-  <div class="visual">
-    <div class="glow"></div>
-
-    <div class="float-card card-one">
-      <b>✦ Creative Design</b>
-      <small>Made for your brand</small>
-    </div>
-
+   </div>
+   <div class="hero-visual reveal">
+    <div class="orbit"></div>
     <div class="laptop">
-      <div class="screen">
-        <div class="screen-inner">
-          <div class="mock-top">
-            <i></i><i></i><i></i>
-            <span class="mock-brand">AzDar Studio</span>
-            <span class="mock-nav">Home · Services · Contact</span>
-          </div>
-
-          <div class="mock-content">
-            <div>
-              <div class="mock-label">YOUR BUSINESS, ONLINE</div>
-              <div class="mock-title">
-                Build a <span>better</span> digital future.
-              </div>
-              <div class="mock-line"></div>
-              <div class="mock-line short"></div>
-              <span class="mock-pill">GET STARTED ↗</span>
-            </div>
-
-            <div class="mock-art"></div>
-          </div>
-        </div>
+     <div class="laptop-screen">
+      <div class="screen-top"><i></i><i></i><i></i></div>
+      <div class="screen-layout">
+       <div class="screen-block">
+        <div class="screen-line short"></div><div class="screen-line"></div>
+        <div class="screen-line mid"></div><div class="screen-art"></div>
+        <div class="screen-line short"></div>
+       </div>
+       <div class="screen-block">
+        <div class="screen-art" style="height:48px"></div>
+        <div class="screen-line"></div><div class="screen-line mid"></div>
+        <div class="screen-line short"></div><div class="screen-line"></div>
+       </div>
       </div>
-      <div class="laptop-base"></div>
+     </div>
+     <div class="laptop-base"></div>
     </div>
-
-    <div class="float-card card-two">
-      <b>↗ Responsive Website</b>
-      <small>Looks great on every screen</small>
-    </div>
+    <div class="floating-chip chip-one">✦ Creative Design</div>
+    <div class="floating-chip chip-two">⌘ <span class="rotating-service" id="heroService">Web Development</span></div>
+   </div>
   </div>
+  <div class="hero-bottom">
+   <span>AZDAR WEB STUDIO</span><span>Design · Development · Digital Growth</span>
+  </div>
+ </div>
 </section>
 
-<section id="featured">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">WHAT WE CREATE</div>
-      <h2>One studio. <span class="gradient">Many possibilities.</span></h2>
-      <p>Explore the services we can create for your business.</p>
-    </div>
-
-    <div class="service-stage reveal">
-      <div>
-        <div class="stage-label">
-          Featured service <span id="serviceCounter">01 / 06</span>
-        </div>
-
-        <div class="stage-name" id="stageName">Web Development</div>
-        <p class="stage-desc" id="stageDesc">
-          Professional, fast, mobile-friendly websites tailored
-          to your business and your goals.
-        </p>
-
-        <div class="actions" style="margin-top:22px">
-          <a class="btn" href="#contact">Discuss This Service ↗</a>
-        </div>
-
-        <div class="service-dots" id="serviceDots"></div>
-      </div>
-
-      <div class="stage-screen">
-        <div class="stage-icon" id="stageIcon">💻</div>
-      </div>
-    </div>
+<section id="portfolio">
+ <div class="container">
+  <div class="section-head reveal">
+   <span class="eyebrow">Selected Work</span>
+   <h2>Ideas turned into <span class="gradient-text">digital experiences.</span></h2>
+   <p>Sample concept projects to show the styles and solutions we can create for your business.</p>
   </div>
-</section>
-</main>
-
-<style>
-/* Animated laptop */
-.visual {
-  min-height: 430px;
-  position: relative;
-  display: grid;
-  place-items: center;
-  perspective: 1000px;
-}
-
-.glow {
-  position: absolute;
-  width: 310px;
-  height: 310px;
-  background: linear-gradient(130deg,#a855f7,#27d9f3);
-  filter: blur(90px);
-  opacity: .25;
-  border-radius: 50%;
-  animation: pulse 5s ease-in-out infinite;
-}
-
-.laptop {
-  width: min(100%,490px);
-  position: relative;
-  animation: float 5s ease-in-out infinite;
-}
-
-.screen {
-  padding: 10px;
-  border: 1px solid #a4b1d9;
-  border-radius: 17px;
-  background: linear-gradient(145deg,#30334a,#090b16 55%);
-  box-shadow: 0 25px 70px #0009;
-}
-
-.screen-inner {
-  height: 285px;
-  border-radius: 9px;
-  overflow: hidden;
-  background: linear-gradient(135deg,#12162c,#17132a);
-  padding: 17px;
-}
-
-.mock-top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border-bottom: 1px solid #ffffff18;
-  padding-bottom: 12px;
-}
-
-.mock-top i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #a855f7;
-}
-
-.mock-brand {
-  margin-left: 8px;
-  font-size: 9px;
-  font-weight: 800;
-}
-
-.mock-nav {
-  margin-left: auto;
-  font-size: 7px;
-  color: #a9b0d2;
-}
-
-.mock-content {
-  padding: 25px 8px 0;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.mock-label {
-  font-size: 7px;
-  letter-spacing: 1.4px;
-  color: #50e7ff;
-}
-
-.mock-title {
-  font-size: 24px;
-  line-height: 1.08;
-  font-weight: 900;
-  margin: 8px 0;
-}
-
-.mock-title span { color: #b777ff; }
-
-.mock-line {
-  height: 4px;
-  width: 85%;
-  border-radius: 8px;
-  background: #555b7c;
-  margin: 6px 0;
-}
-
-.mock-line.short { width: 60%; }
-
-.mock-pill {
-  display: inline-block;
-  margin-top: 10px;
-  background: linear-gradient(90deg,#a855f7,#24d7ed);
-  padding: 7px 10px;
-  border-radius: 5px;
-  font-size: 7px;
-  font-weight: 900;
-}
-
-.mock-art {
-  height: 140px;
-  border-radius: 12px;
-  background: radial-gradient(circle,#40dffb55,transparent 40%),
-              linear-gradient(145deg,#3d2464,#11162c);
-  border: 1px solid #ffffff22;
-  display: grid;
-  place-items: center;
-  position: relative;
-}
-
-.mock-art:before {
-  content: "";
-  width: 95px;
-  height: 115px;
-  border: 1px solid #60eaff;
-  transform: rotate(35deg);
-  border-radius: 17px;
-  box-shadow: 0 0 22px #3ce9ff70;
-}
-
-.mock-art:after {
-  content: "✦";
-  position: absolute;
-  color: white;
-  font-size: 45px;
-  text-shadow: 0 0 20px #47eaff;
-}
-
-.laptop-base {
-  height: 14px;
-  margin: 0 -17px;
-  background: linear-gradient(#b8bfd5,#4d536a 45%,#191c2a);
-  clip-path: polygon(4% 0,96% 0,100% 100%,0 100%);
-  border-radius: 0 0 12px 12px;
-}
-
-.float-card {
-  position: absolute;
-  background: #13172b;
-  border: 1px solid #ffffff20;
-  border-radius: 13px;
-  padding: 13px 15px;
-  box-shadow: 0 15px 35px #0007;
-  animation: float 4s ease-in-out infinite;
-  z-index: 2;
-}
-
-.float-card b { display: block; font-size: .85rem; }
-.float-card small { color: var(--muted); font-size: .72rem; }
-.card-one { top: 42px; left: -5px; }
-.card-two { bottom: 44px; right: -4px; animation-delay: -1.8s; }
-
-/* Service spotlight */
-.section-head {
-  text-align: center;
-  max-width: 690px;
-  margin: 0 auto 42px;
-}
-
-.kicker {
-  color: var(--cyan);
-  font-size: .78rem;
-  font-weight: 850;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-size: clamp(2rem,4vw,3rem);
-  line-height: 1.13;
-  letter-spacing: -1.2px;
-  margin: 10px 0 14px;
-}
-
-.section-head p,.muted { color: var(--muted); }
-
-.service-stage {
-  border: 1px solid #ffffff16;
-  border-radius: 24px;
-  padding: clamp(24px,5vw,52px);
-  background: linear-gradient(135deg,#14162bdf,#0d1121ed);
-  display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  align-items: center;
-  gap: 35px;
-  overflow: hidden;
-}
-
-.stage-label {
-  color: #aeb6d2;
-  font-size: .8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.stage-name {
-  font-size: clamp(2rem,4vw,3.1rem);
-  font-weight: 900;
-  line-height: 1.08;
-  margin: 12px 0;
-  background: linear-gradient(100deg,#d8aaff,#fff,#59eaff);
-  background-clip: text;
-  color: transparent;
-  transition: opacity .2s;
-}
-
-.stage-desc { color: var(--muted); max-width: 420px; }
-
-.stage-screen {
-  min-height: 230px;
-  border-radius: 18px;
-  background: linear-gradient(145deg,#24264a,#111322);
-  border: 1px solid #ffffff20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.stage-screen:before,.stage-screen:after {
-  content: "";
-  position: absolute;
-  border: 1px solid #6c6dff55;
-  border-radius: 20px;
-  transform: rotate(-12deg);
-  width: 70%;
-  height: 70%;
-}
-
-.stage-screen:after {
-  transform: rotate(12deg);
-  border-color: #4ce6ff55;
-}
-
-.stage-icon {
-  font-size: clamp(4rem,9vw,7rem);
-  z-index: 1;
-  filter: drop-shadow(0 0 25px #9c68ff88);
-}
-
-.service-dots { display: flex; gap: 9px; margin-top: 25px; }
-
-.service-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid #8188a7;
-  background: transparent;
-  cursor: pointer;
-}
-
-.service-dot.active {
-  background: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0) rotateY(-7deg); }
-  50% { transform: translateY(-12px) rotateY(-4deg); }
-}
-
-@keyframes pulse {
-  0%,100% { opacity: .2; transform: scale(.9); }
-  50% { opacity: .36; transform: scale(1.08); }
-}
-
-@keyframes iconPop {
-  from { opacity: 0; transform: scale(.7) rotate(-12deg); }
-  to { opacity: 1; transform: scale(1) rotate(0); }
-}
-</style>
-
-<style>
-/* Services cards */
-section {
-  padding: 75px 0;
-  scroll-margin-top: 75px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 18px;
-}
-
-.service-card,.info-card {
-  padding: 25px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: linear-gradient(145deg,#14172a9c,#0f1120);
-  transition: transform .25s,border-color .25s;
-}
-
-.service-card:hover,.info-card:hover {
-  transform: translateY(-6px);
-  border-color: #54dcf866;
-}
-
-.service-card .ico {
-  font-size: 1.8rem;
-  margin-bottom: 14px;
-  display: inline-grid;
-  place-items: center;
-  width: 53px;
-  height: 53px;
-  border-radius: 15px;
-  background: #a855f719;
-  border: 1px solid #a855f733;
-}
-
-h3 { font-size: 1.13rem; margin-bottom: 8px; }
-
-.service-card p,.info-card p {
-  color: var(--muted);
-  font-size: .93rem;
-}
-
-/* About section */
-.about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 45px;
-  align-items: center;
-}
-
-.about-panel {
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 30px;
-  background: linear-gradient(145deg,#16152c,#0e1221);
-}
-
-.stat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.stat {
-  padding: 18px;
-  background: #ffffff06;
-  border: 1px solid #ffffff12;
-  border-radius: 14px;
-}
-
-.stat strong {
-  font-size: 1.35rem;
-  color: var(--cyan);
-  display: block;
-}
-
-.stat span { font-size: .82rem; color: var(--muted); }
-
-.checklist {
-  list-style: none;
-  margin-top: 20px;
-  display: grid;
-  gap: 12px;
-  color: #d7d9e9;
-}
-
-.checklist li:before {
-  content: "✦";
-  color: var(--cyan);
-  margin-right: 10px;
-}
-
-/* Work process */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 15px;
-  counter-reset: step;
-}
-
-.step {
-  padding: 22px;
-  border-top: 1px solid #a855f755;
-  background: linear-gradient(180deg,#ffffff07,transparent);
-  border-radius: 10px;
-  counter-increment: step;
-}
-
-.step:before {
-  content: "0" counter(step);
-  color: var(--cyan);
-  font-weight: 900;
-  font-size: 1.35rem;
-  display: block;
-  margin-bottom: 15px;
-}
-
-/* Contact */
-.contact-box {
-  border: 1px solid #ffffff1b;
-  border-radius: 25px;
-  padding: clamp(25px,5vw,50px);
-  background: radial-gradient(ellipse at 100% 0,#4f46e51e,transparent 50%),
-              linear-gradient(140deg,#15162b,#0c1020);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.contact-list {
-  display: grid;
-  gap: 14px;
-  margin-top: 22px;
-}
-
-.contact-item {
-  display: flex;
-  gap: 13px;
-  align-items: center;
-  padding: 13px;
-  border: 1px solid #ffffff12;
-  border-radius: 13px;
-  background: #ffffff05;
-}
-
-.contact-item .ico { font-size: 1.2rem; }
-.contact-item small { display: block; color: var(--muted); }
-
-.contact-form { display: grid; gap: 12px; }
-
-input,select,textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border-radius: 11px;
-  background: #080b17;
-  border: 1px solid #ffffff20;
-  color: #fff;
-  font: inherit;
-  outline: none;
-}
-
-input:focus,select:focus,textarea:focus {
-  border-color: var(--cyan);
-}
-
-textarea { resize: vertical; min-height: 105px; }
-
-footer {
-  padding: 27px 0;
-  border-top: 1px solid #ffffff10;
-  color: var(--muted);
-  font-size: .85rem;
-}
-
-.foot {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-/* Scroll-in animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .7s ease,transform .7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile responsive */
-@media(max-width:850px) {
-  nav { gap: 13px; font-size: .84rem; }
-  .hero { gap: 22px; min-height: 580px; }
-  .grid { grid-template-columns: repeat(2,1fr); }
-  .steps { grid-template-columns: repeat(2,1fr); }
-  .service-stage { grid-template-columns: 1fr; }
-  .about { gap: 25px; }
-}
-
-@media(max-width:650px) {
-  .nav { height: 67px; }
-  .menu { display: block; }
-
-  nav {
-    display: none;
-    position: absolute;
-    left: 4%;
-    right: 4%;
-    top: 67px;
-    padding: 17px;
-    background: #101326;
-    border: 1px solid var(--line);
-    border-radius: 15px;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  nav.open { display: flex; }
-  nav a { padding: 7px; }
-  .nav > .btn { display: none; }
-
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 55px 0 50px;
-    gap: 10px;
-  }
-
-  .hero h1 { letter-spacing: -1.6px; }
-  .visual { min-height: 350px; margin-top: 8px; }
-  .screen-inner { height: 240px; }
-  .mock-content { padding-top: 18px; }
-  .mock-title { font-size: 19px; }
-  .mock-art { height: 115px; }
-  .card-one { left: 0; top: 12px; }
-  .card-two { right: 0; bottom: 22px; }
-  .float-card { padding: 10px 12px; }
-
-  section { padding: 62px 0; }
-  .grid,.about,.contact-box { grid-template-columns: 1fr; }
-  .steps { gap: 10px; }
-  .step { padding: 17px; }
-  .foot { flex-direction: column; }
-  .service-stage { padding: 23px; }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-  }
-  .reveal { opacity:1; transform:none; }
-}
-</style>
-
-<section id="services">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">OUR SERVICES</div>
-      <h2>Digital services for <span class="gradient">real businesses.</span></h2>
-      <p>Choose the service you need and tell us about your goals.</p>
-    </div>
-
-    <div class="grid">
-      <article class="service-card reveal">
-        <span class="ico">💻</span>
-        <h3>Web Development</h3>
-        <p>Professional business websites with responsive layouts and clear information.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="ico">🛍️</span>
-        <h3>Shopify Store Design</h3>
-        <p>Attractive Shopify storefront designs to showcase your products and brand.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="ico">📱</span>
-        <h3>Mobile-Friendly Websites</h3>
-        <p>Websites that adapt to phones, tablets and desktop screens.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="ico">🏢</span>
-        <h3>Business Websites</h3>
-        <p>Present your company, services, portfolio and contact details online.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="ico">🎨</span>
-        <h3>Custom Website Design</h3>
-        <p>Unique website layouts planned around your brand and requirements.</p>
-      </article>
-
-      <article class="service-card reveal">
-        <span class="ico">📣</span>
-        <h3>Social Media Services</h3>
-        <p>Support for your social media presence and digital brand presentation.</p>
-      </article>
-    </div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))">
+   <article class="card reveal">
+    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#22234c,#a855f7,#42e8ff);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px">▣</div>
+    <span class="pill">Business Website</span><h3 style="margin:12px 0 6px">Modern Business Presence</h3>
+    <p class="muted">A responsive layout for services, company details and customer enquiries.</p>
+    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="Business Website">Build Something Similar ↗</a>
+   </article>
+   <article class="card reveal">
+    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#163d51,#42e8ff,#b8faff);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px;color:#080914">🛍</div>
+    <span class="pill">E-commerce Concept</span><h3 style="margin:12px 0 6px">Online Store Experience</h3>
+    <p class="muted">Product-focused layouts with a clear shopping journey and mobile-first design.</p>
+    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="E-commerce Store">Build Something Similar ↗</a>
+   </article>
+   <article class="card reveal">
+    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#352050,#e06bca,#ffbd85);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px">✧</div>
+    <span class="pill">Custom Design</span><h3 style="margin:12px 0 6px">Brand Landing Page</h3>
+    <p class="muted">A focused landing page with bold visuals, service highlights and strong calls to action.</p>
+    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="Landing Page">Build Something Similar ↗</a>
+   </article>
   </div>
+  <p class="muted" style="text-align:center;font-size:.8rem;margin-top:18px">Portfolio cards above are illustrative concepts, not claims of completed client projects.</p>
+ </div>
 </section>
 
-<section id="about">
-  <div class="wrap about">
-    <div class="reveal">
-      <div class="kicker">ABOUT AZDAR</div>
-      <h2>Your vision.<br><span class="gradient">Our code.</span></h2>
-      <p class="muted">
-        AzDar Web Studio helps businesses build a stronger online presence
-        through thoughtful design and practical digital solutions.
-      </p>
-
-      <ul class="checklist">
-        <li>Design based on your needs</li>
-        <li>Responsive layouts for mobile users</li>
-        <li>Clear project communication</li>
-        <li>Custom quotes based on project scope</li>
-      </ul>
-
-      <div style="margin-top:25px">
-        <a class="btn" href="#contact">Tell Us Your Idea ↗</a>
-      </div>
-    </div>
-
-    <div class="about-panel reveal">
-      <div class="kicker">OUR APPROACH</div>
-      <h3 style="font-size:1.5rem;margin-top:10px">Built around your goals.</h3>
-      <p class="muted">
-        We learn what you need, then suggest a suitable design,
-        features, pricing and estimated timeline.
-      </p>
-
-      <div class="stat-grid">
-        <div class="stat"><strong>01</strong><span>Understand your idea</span></div>
-        <div class="stat"><strong>02</strong><span>Plan the design</span></div>
-        <div class="stat"><strong>03</strong><span>Build your website</span></div>
-        <div class="stat"><strong>04</strong><span>Review together</span></div>
-      </div>
-    </div>
+<section id="services" style="padding-top:35px">
+ <div class="container">
+  <div class="section-head reveal"><span class="eyebrow">What We Do</span><h2>Services built around <span class="gradient-text">your goals.</span></h2></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr))">
+   <article class="card reveal"><div class="float-icon" style="font-size:2rem">⌘</div><h3>Web Development</h3><p class="muted">Professional, responsive websites for businesses, brands and personal projects.</p></article>
+   <article class="card reveal"><div class="float-icon" style="font-size:2rem">▣</div><h3>Shopify Store Design</h3><p class="muted">Store layouts, product pages and storefront styling to suit your brand.</p></article>
+   <article class="card reveal"><div class="float-icon" style="font-size:2rem">✧</div><h3>Custom Websites</h3><p class="muted">A tailored design shaped around your features, content and workflow.</p></article>
+   <article class="card reveal"><div class="float-icon" style="font-size:2rem">◎</div><h3>Social Media Services</h3><p class="muted">Help with a consistent, professional digital presence for your business.</p></article>
   </div>
+ </div>
+</section>
+  <section id="pricing">
+ <div class="container">
+  <div class="section-head reveal">
+   <span class="eyebrow">Transparent Starting Prices</span>
+   <h2>Choose a plan that fits <span class="gradient-text">your project.</span></h2>
+   <p>Final quote project requirements, content and features confirm karne ke baad di jayegi.</p>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+   <article class="card reveal">
+    <span class="pill">Starter</span><h3 style="margin-top:16px">Basic Website</h3>
+    <p class="muted">For a simple professional online presence.</p>
+    <h2 style="margin:20px 0">Rs. 15,000 <small style="font-size:.8rem;color:var(--muted)">starting</small></h2>
+    <p>✓ Essential pages<br>✓ Mobile-friendly layout<br>✓ Contact section<br>✓ Basic animations</p>
+    <a class="btn" style="margin-top:22px;width:100%" href="#order" data-plan="Basic Website">Choose Starter</a>
+   </article>
+   <article class="card reveal" style="border-color:#a855f780;position:relative">
+    <span class="pill">Popular Choice</span><h3 style="margin-top:16px">Business Website</h3>
+    <p class="muted">For brands that need a polished presence.</p>
+    <h2 style="margin:20px 0">Rs. 25,000 <small style="font-size:.8rem;color:var(--muted)">starting</small></h2>
+    <p>✓ Custom design<br>✓ Multiple sections<br>✓ Advanced animations<br>✓ Enquiry form<br>✓ Responsive layout</p>
+    <a class="btn btn-primary" style="margin-top:22px;width:100%" href="#order" data-plan="Business Website">Choose Business</a>
+   </article>
+   <article class="card reveal">
+    <span class="pill">Custom Scope</span><h3 style="margin-top:16px">Shopify / Custom</h3>
+    <p class="muted">For online stores and special requirements.</p>
+    <h2 style="margin:20px 0">Custom Quote</h2>
+    <p>✓ Requirements-based scope<br>✓ Storefront design<br>✓ Feature planning<br>✓ Delivery timeline quote</p>
+    <a class="btn" style="margin-top:22px;width:100%" href="#order" data-plan="Shopify / Custom Website">Request Quote</a>
+   </article>
+  </div>
+
+  <div class="card reveal" style="max-width:720px;margin:32px auto 0">
+   <h3>Quick Price Estimator</h3>
+   <p class="muted" style="margin-bottom:20px">Estimate a starting budget. This is not a confirmed quote.</p>
+   <label for="priceService">Select service</label>
+   <select id="priceService" style="width:100%;margin:7px 0 18px;padding:13px;background:#0b0d1c;color:white;border:1px solid var(--line);border-radius:10px">
+    <option value="basic">Basic Website</option>
+    <option value="business">Business Website</option>
+    <option value="shopify">Shopify Store Design</option>
+    <option value="custom">Custom Website</option>
+   </select>
+   <label for="pricePages">Number of pages / sections</label>
+   <select id="pricePages" style="width:100%;margin:7px 0 18px;padding:13px;background:#0b0d1c;color:white;border:1px solid var(--line);border-radius:10px">
+    <option value="1">Up to 5</option><option value="2">6–10</option><option value="3">11+</option>
+   </select>
+   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div><span class="muted">Estimated starting total</span><h2 id="priceResult" class="gradient-text">Rs. 15,000</h2></div>
+    <a class="btn btn-primary" id="estimateOrder" href="#order">Request This Quote ↗</a>
+   </div>
+  </div>
+ </div>
 </section>
 
-<section id="process">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">SIMPLE PROCESS</div>
-      <h2>From idea to <span class="gradient">online presence.</span></h2>
-      <p>A straightforward process for your website project.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step reveal">
-        <h3>Share Your Idea</h3>
-        <p class="muted">Tell us about your business and website goals.</p>
-      </div>
-      <div class="step reveal">
-        <h3>Get a Quote</h3>
-        <p class="muted">Discuss features, pricing and estimated timeline.</p>
-      </div>
-      <div class="step reveal">
-        <h3>Design & Build</h3>
-        <p class="muted">We create the agreed design and develop the project.</p>
-      </div>
-      <div class="step reveal">
-        <h3>Review Together</h3>
-        <p class="muted">Review the work and discuss final adjustments.</p>
-      </div>
-    </div>
+<section id="order">
+ <div class="container">
+  <div class="section-head reveal">
+   <span class="eyebrow">Start a Project</span>
+   <h2>Tell us what you're <span class="gradient-text">building.</span></h2>
+   <p>Form fill karo; WhatsApp par tumhari project details ready message ki form mein khul jayengi.</p>
   </div>
+  <div class="card reveal" style="max-width:760px;margin:auto">
+   <form id="orderForm">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))">
+     <div><label for="customerName">Your name *</label><input id="customerName" name="name" required maxlength="100" placeholder="Enter your name"></div>
+     <div><label for="customerPhone">WhatsApp / phone *</label><input id="customerPhone" name="phone" required maxlength="30" placeholder="+92..." inputmode="tel"></div>
+     <div><label for="customerEmail">Email (optional)</label><input id="customerEmail" name="email" type="email" maxlength="150" placeholder="you@example.com"></div>
+     <div><label for="orderService">Service *</label><select id="orderService" name="service" required><option value="">Choose service</option><option>Web Development</option><option>Shopify Store Design</option><option>Custom Website</option><option>Social Media Services</option><option>Other</option></select></div>
+     <div><label for="orderBudget">Estimated budget</label><select id="orderBudget" name="budget"><option>Need guidance</option><option>Under Rs. 15,000</option><option>Rs. 15,000–25,000</option><option>Rs. 25,000–50,000</option><option>Rs. 50,000+</option></select></div>
+     <div><label for="orderTimeline">Preferred timeline</label><select id="orderTimeline" name="timeline"><option>Flexible</option><option>Within 1 week</option><option>2–3 weeks</option><option>1 month or more</option></select></div>
+    </div>
+    <div style="margin-top:18px"><label for="orderDetails">Project details *</label><textarea id="orderDetails" name="details" required maxlength="2000" rows="5" placeholder="Website ka purpose, required pages aur features batayein..."></textarea></div>
+    <button class="btn btn-primary" type="submit" style="width:100%;margin-top:20px">Send Project Details on WhatsApp ↗</button>
+    <p class="muted" style="font-size:.78rem;margin-top:12px">Form data automatically kisi server ko send nahi hota. Submit karne par WhatsApp khulta hai.</p>
+   </form>
+  </div>
+ </div>
+</section>
+  <section id="reviews">
+ <div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Client Feedback</span><h2>Trust starts with <span class="gradient-text">good communication.</span></h2><p>Review section ready hai. Publish karne se pehle sirf genuine client feedback add karna.</p></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
+   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“Professional design aur clear communication hamare project ke liye important hain.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
+   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“A good website should look polished on both mobile and desktop.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
+   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“The goal is to create a website that fits the business and its customers.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
+  </div>
+ </div>
 </section>
 
 <section id="contact">
-  <div class="wrap">
-    <div class="contact-box reveal">
-      <div>
-        <div class="kicker">LET'S TALK</div>
-        <h2>Have a project<br><span class="gradient">in mind?</span></h2>
-        <p class="muted">
-          Tell us what you need. We'll discuss the best next step for your project.
-        </p>
-
-        <div class="contact-list">
-          <a class="contact-item" href="https://wa.me/923002867506" target="_blank" rel="noopener">
-            <span class="ico">💬</span>
-            <span><strong>WhatsApp</strong><small>0300 2867506 · Chat with us</small></span>
-          </a>
-
-          <a class="contact-item" href="mailto:azdarwattoo@gmail.com">
-            <span class="ico">✉️</span>
-            <span><strong>Email</strong><small>azdarwattoo@gmail.com</small></span>
-          </a>
-
-          <div class="contact-item">
-            <span class="ico">🌐</span>
-            <span><strong>AzDar Web Studio</strong><small>Your Vision, Our Code.</small></span>
-          </div>
-        </div>
-      </div>
-
-      <form class="contact-form" id="contactForm">
-        <h3>Tell us about your project</h3>
-        <input id="clientName" placeholder="Your name" required>
-        <input id="clientContact" placeholder="Your WhatsApp number or email" required>
-
-        <select id="clientService" required>
-          <option value="">Select a service</option>
-          <option>Web Development</option>
-          <option>Shopify Store Design</option>
-          <option>Business Website</option>
-          <option>Custom Website Design</option>
-          <option>Social Media Services</option>
-          <option>Other / Not Sure Yet</option>
-        </select>
-
-        <textarea id="clientMessage" placeholder="Briefly describe what you need..." required></textarea>
-
-        <button class="btn" type="submit">Send Enquiry on WhatsApp ↗</button>
-        <small class="muted">WhatsApp will open with your enquiry ready to send.</small>
-      </form>
-    </div>
+ <div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Let's Talk</span><h2>Your idea deserves a <span class="gradient-text">great website.</span></h2><p>Apni requirements share karo. Hum project scope, price aur timeline discuss karenge.</p></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))">
+   <a class="card reveal" href="https://wa.me/923002867506" target="_blank" rel="noopener"><span class="eyebrow">WHATSAPP</span><h3 style="margin:10px 0">0300 2867506</h3><p class="muted">Discuss your project directly ↗</p></a>
+   <a class="card reveal" href="mailto:azdarwattoo@gmail.com"><span class="eyebrow">EMAIL</span><h3 style="margin:10px 0;overflow-wrap:anywhere">azdarwattoo@gmail.com</h3><p class="muted">Send your project enquiry ↗</p></a>
   </div>
+ </div>
 </section>
-</body>
 
-<footer>
-  <div class="wrap foot">
-    <span>© <span id="year"></span> AzDar Web Studio. All rights reserved.</span>
-    <span>Your Vision, Our Code. · Created by Azmat Ali</span>
-    <a href="#home">Back to top ↑</a>
-  </div>
+<footer style="padding:28px 0;border-top:1px solid var(--line)">
+ <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap">
+  <div><strong>AzDar Web Studio</strong><p class="muted" style="font-size:.8rem">Your Vision, Our Code.</p></div>
+  <p class="muted" style="font-size:.8rem">Created by Azmat Ali · <span id="year"></span></p>
+  <a href="#home" class="btn btn-small">Back to top ↑</a>
+ </div>
 </footer>
 
-<script>
-const services = [
-  {
-    name: "Web Development",
-    desc: "Professional, fast, mobile-friendly websites tailored to your business and goals.",
-    icon: "💻"
-  },
-  {
-    name: "Shopify Store Design",
-    desc: "A polished Shopify storefront that presents your products and brand attractively.",
-    icon: "🛍️"
-  },
-  {
-    name: "Business Websites",
-    desc: "Bring your business details, services, portfolio and contact information together.",
-    icon: "🏢"
-  },
-  {
-    name: "Custom Website Design",
-    desc: "A unique design planned around your brand and the features you need.",
-    icon: "🎨"
-  },
-  {
-    name: "Mobile-Friendly Designs",
-    desc: "A smooth browsing experience across phones, tablets and desktop screens.",
-    icon: "📱"
-  },
-  {
-    name: "Social Media Services",
-    desc: "Support your digital presence and social media brand presentation.",
-    icon: "📣"
-  }
+<!-- WhatsApp-style live contact shortcut. This is not a real-time chat server. -->
+<a id="chatLauncher" href="https://wa.me/923002867506?text=Hi%20AzDar%20Web%20Studio%2C%20I%20want%20to%20discuss%20a%20project."
+ target="_blank" rel="noopener" aria-label="Chat with AzDar Web Studio"
+ style="position:fixed;right:18px;bottom:18px;z-index:80;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#080914;font-size:1.45rem;box-shadow:0 8px 30px #42e8ff55;animation:chipFloat 3s ease-in-out infinite">✉</a>
+
+<!-- Front-end admin demo. Never enter real passwords or sensitive customer data here. -->
+<section id="admin" style="padding:50px 0">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Owner Tools · Demo</span><h2>Admin <span class="gradient-text">Dashboard</span></h2><p>This local demo lets you preview site controls in this browser only.</p></div>
+  <div class="card" style="max-width:700px;margin:auto">
+   <p class="muted" style="margin-bottom:16px">Demo access code: <strong style="color:var(--cyan)">AZDAR-DEMO</strong>. This is not secure authentication.</p>
+   <form id="adminLogin">
+    <label for="adminCode">Demo access code</label>
+    <input id="adminCode" type="password" autocomplete="off" placeholder="Enter demo code" required>
+    <button class="btn btn-primary" style="width:100%;margin-top:14px" type="submit">Open Demo Dashboard</button>
+   </form>
+   <div id="adminPanel" hidden style="margin-top:24px">
+    <h3>Website controls</h3>
+    <p class="muted" style="margin:6px 0 15px">Changes below apply to this browser only.</p>
+    <label for="adminAnnouncement">Announcement text</label>
+    <input id="adminAnnouncement" maxlength="180" placeholder="e.g. New project bookings open">
+    <button class="btn" id="saveAnnouncement" style="margin-top:12px">Preview Announcement</button>
+    <div id="announcementPreview" class="pill" style="display:none;margin-top:15px"></div>
+    <button class="btn" id="adminLogout" style="margin-top:18px">Close Dashboard</button>
+   </div>
+   <p id="adminMessage" role="status" class="muted" style="margin-top:12px"></p>
+  </div>
+ </div>
+</section>
+  <script>
+"use strict";
+
+/* Rotating service titles */
+const rotatingServices = [
+ "Web Development",
+ "Shopify Store Design",
+ "Custom Websites",
+ "Mobile-Friendly Design"
 ];
-
-let current = 0;
-
-const nameEl = document.getElementById("stageName");
-const descEl = document.getElementById("stageDesc");
-const iconEl = document.getElementById("stageIcon");
-const counterEl = document.getElementById("serviceCounter");
-const dotsEl = document.getElementById("serviceDots");
-
-function showService(index) {
-  current = index;
-
-  const service = services[current];
-
-  nameEl.style.opacity = 0;
-  descEl.style.opacity = 0;
-  iconEl.style.opacity = 0;
-
+let serviceIndex = 0;
+const heroService = document.getElementById("heroService");
+if (heroService) {
+ setInterval(() => {
+  heroService.style.opacity = "0";
+  heroService.style.transform = "translateY(8px)";
   setTimeout(() => {
-    nameEl.textContent = service.name;
-    descEl.textContent = service.desc;
-    iconEl.textContent = service.icon;
-
-    counterEl.textContent =
-      String(current + 1).padStart(2, "0") +
-      " / " +
-      String(services.length).padStart(2, "0");
-
-    nameEl.style.opacity = 1;
-    descEl.style.opacity = 1;
-    iconEl.style.opacity = 1;
-
-    iconEl.style.animation = "none";
-    void iconEl.offsetWidth;
-    iconEl.style.animation = "iconPop .6s ease";
-
-    [...dotsEl.children].forEach((dot, i) => {
-      dot.classList.toggle("active", i === current);
-    });
-  }, 180);
-}
-
-// Clickable service indicators
-services.forEach((service, index) => {
-  const button = document.createElement("button");
-
-  button.className = "service-dot" + (index === 0 ? " active" : "");
-  button.type = "button";
-  button.setAttribute("aria-label", "Show " + service.name);
-
-  button.addEventListener("click", () => {
-    showService(index);
-  });
-
-  dotsEl.appendChild(button);
-});
-
-// Automatically rotate featured services
-setInterval(() => {
-  showService((current + 1) % services.length);
-}, 4200);
-
-// Animated headline
-const heroNames = [
-  "Dream Website.",
-  "Shopify Store.",
-  "Business Website.",
-  "Custom Design."
-];
-
-let heroIndex = 0;
-const heroText = document.getElementById("heroService");
-
-heroText.style.transition = "opacity .25s ease";
-
-setInterval(() => {
-  heroText.style.opacity = 0;
-
-  setTimeout(() => {
-    heroIndex = (heroIndex + 1) % heroNames.length;
-    heroText.textContent = heroNames[heroIndex];
-    heroText.style.opacity = 1;
+   serviceIndex = (serviceIndex + 1) % rotatingServices.length;
+   heroService.textContent = rotatingServices[serviceIndex];
+   heroService.style.opacity = "1";
+   heroService.style.transform = "translateY(0)";
   }, 250);
-}, 3000);
-
-// Current year in footer
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-// Mobile navigation menu
-document.getElementById("menu").addEventListener("click", () => {
-  document.getElementById("nav").classList.toggle("open");
-});
-
-// Close menu after selecting a section
-document.querySelectorAll("#nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("nav").classList.remove("open");
-  });
-});
-
-// Animate sections as they appear on screen
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".reveal").forEach(element => {
-    observer.observe(element);
-  });
-} else {
-  document.querySelectorAll(".reveal").forEach(element => {
-    element.classList.add("visible");
-  });
+ }, 2400);
 }
 
-// Contact form opens WhatsApp with prepared enquiry
-document.getElementById("contactForm").addEventListener("submit", event => {
-  event.preventDefault();
+/* Scroll reveal with graceful fallback */
+const revealItems = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+ const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+   if (entry.isIntersecting) {
+    entry.target.classList.add("visible");
+    revealObserver.unobserve(entry.target);
+   }
+  });
+ }, {threshold: 0.12});
+ revealItems.forEach(item => revealObserver.observe(item));
+} else {
+ revealItems.forEach(item => item.classList.add("visible"));
+}
 
-  const name = document.getElementById("clientName").value.trim();
-  const contact = document.getElementById("clientContact").value.trim();
-  const service = document.getElementById("clientService").value;
-  const message = document.getElementById("clientMessage").value.trim();
+/* Mobile navigation */
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+if (menuToggle && navLinks) {
+ menuToggle.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("nav-open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.textContent = open ? "✕" : "☰";
+ });
+ navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  navLinks.classList.remove("nav-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.textContent = "☰";
+ }));
+}
 
-  const text =
-    "Assalam-o-Alaikum AzDar Web Studio!\n\n" +
-    "Name: " + name + "\n" +
-    "Contact: " + contact + "\n" +
-    "Service: " + service + "\n" +
-    "Project details: " + message;
+/* Pricing estimator — edit these starting prices as needed */
+const PRICES = {
+ basic: 15000,
+ business: 25000,
+ shopify: 30000,
+ custom: 35000
+};
+const serviceNames = {
+ basic: "Basic Website",
+ business: "Business Website",
+ shopify: "Shopify Store Design",
+ custom: "Custom Website"
+};
+const priceService = document.getElementById("priceService");
+const pricePages = document.getElementById("pricePages");
+const priceResult = document.getElementById("priceResult");
+const estimateOrder = document.getElementById("estimateOrder");
 
-  const whatsappURL =
-    "https://wa.me/923002867506?text=" + encodeURIComponent(text);
+function updateEstimate() {
+ if (!priceService || !pricePages || !priceResult) return;
+ const base = PRICES[priceService.value] || PRICES.basic;
+ const multiplier = Number(pricePages.value) || 1;
+ const total = Math.round(base + (multiplier - 1) * base * 0.2);
+ priceResult.textContent = "Rs. " + total.toLocaleString("en-PK");
+ if (estimateOrder) {
+  estimateOrder.href = "#order";
+  estimateOrder.dataset.plan = serviceNames[priceService.value] || "Website";
+  estimateOrder.dataset.estimate = String(total);
+ }
+}
+if (priceService) priceService.addEventListener("change", updateEstimate);
+if (pricePages) pricePages.addEventListener("change", updateEstimate);
+updateEstimate();
 
-  window.open(whatsappURL, "_blank");
+/* Pre-fill order form from plan/project links */
+document.querySelectorAll("[data-plan], [data-project]").forEach(link => {
+ link.addEventListener("click", () => {
+  const plan = link.dataset.plan || link.dataset.project || "";
+  const service = document.getElementById("orderService");
+  const details = document.getElementById("orderDetails");
+  if (service && /shopify/i.test(plan)) service.value = "Shopify Store Design";
+  else if (service && /custom|landing/i.test(plan)) service.value = "Custom Website";
+  else if (service && /business|basic/i.test(plan)) service.value = "Web Development";
+  if (details && !details.value) details.value = "Interested in: " + plan + ". Please share the final quote and timeline.";
+ });
 });
-</script>
 
+/* Order form opens WhatsApp with a pre-filled message */
+const orderForm = document.getElementById("orderForm");
+if (orderForm) {
+ orderForm.addEventListener("submit", event => {
+  event.preventDefault();
+  if (!orderForm.reportValidity()) return;
+  const data = new FormData(orderForm);
+  const message = [
+   "Assalam-o-Alaikum AzDar Web Studio!",
+   "",
+   "New Project Enquiry",
+   "Name: " + (data.get("name") || ""),
+   "Phone: " + (data.get("phone") || ""),
+   "Email: " + (data.get("email") || "Not provided"),
+   "Service: " + (data.get("service") || ""),
+   "Budget: " + (data.get("budget") || ""),
+   "Timeline: " + (data.get("timeline") || ""),
+   "Project Details: " + (data.get("details") || "")
+  ].join("\n");
+  const url = "https://wa.me/923002867506?text=" + encodeURIComponent(message);
+  window.open(url, "_blank", "noopener");
+ });
+}
+
+/* Footer year */
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
+
+/* Demo-only admin panel — client-side code is not secure authentication */
+const adminLogin = document.getElementById("adminLogin");
+const adminPanel = document.getElementById("adminPanel");
+const adminCode = document.getElementById("adminCode");
+const adminMessage = document.getElementById("adminMessage");
+const adminLogout = document.getElementById("adminLogout");
+const saveAnnouncement = document.getElementById("saveAnnouncement");
+const adminAnnouncement = document.getElementById("adminAnnouncement");
+const announcementPreview = document.getElementById("announcementPreview");
+
+if (adminLogin) {
+ adminLogin.addEventListener("submit", event => {
+  event.preventDefault();
+  if (adminCode.value === "AZDAR-DEMO") {
+   adminPanel.hidden = false;
+   adminMessage.textContent = "Demo dashboard opened. This does not protect or manage a live website.";
+   adminCode.value = "";
+  } else {
+   adminMessage.textContent = "Code incorrect. Use the demo code shown above.";
+  }
+ });
+}
+if (adminLogout) {
+ adminLogout.addEventListener("click", () => {
+  adminPanel.hidden = true;
+  adminMessage.textContent = "Demo dashboard closed.";
+ });
+}
+if (saveAnnouncement) {
+ saveAnnouncement.addEventListener("click", () => {
+  const value = adminAnnouncement.value.trim();
+  announcementPreview.textContent = value || "No announcement entered.";
+  announcementPreview.style.display = "inline-flex";
+  adminMessage.textContent = "Local preview updated. This does not publish to other visitors.";
+ });
+}
+
+/* Respect reduced-motion preferences */
+if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+ document.documentElement.style.scrollBehavior = "auto";
+ document.querySelectorAll(".laptop,.orbit,.floating-chip,.float-icon").forEach(el => {
+  el.style.animation = "none";
+ });
+}
+</script>
+<style>
+/* Responsive layout */
+label{display:block;font-size:.9rem;font-weight:700;margin-bottom:6px}
+input,select,textarea{
+ width:100%;padding:13px 14px;background:#0b0d1c;color:var(--text);
+ border:1px solid var(--line);border-radius:10px;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #42e8ff18}
+textarea{resize:vertical}
+[hidden]{display:none!important}
+@media(max-width:820px){
+ .nav{min-height:68px;flex-wrap:wrap}
+ .menu-toggle{display:inline-flex}
+ .nav-links{
+  display:none;position:absolute;top:68px;left:0;right:0;padding:18px 5%;
+  flex-direction:column;align-items:stretch;gap:8px;background:#0b0d1c;
+  border-bottom:1px solid var(--line)
+ }
+ .nav-links.nav-open{display:flex}
+ .nav-links a{padding:9px}
+ .hero{min-height:auto;padding:65px 0 45px}
+ .hero-grid{grid-template-columns:1fr;gap:20px}
+ .hero h1{letter-spacing:-1.2px}
+ .hero-visual{min-height:320px;margin-top:8px}
+ .orbit{width:250px;height:250px}
+ .laptop{width:min(88%,420px)}
+ .floating-chip{font-size:.72rem}
+ section{padding:65px 0}
+ .hero-bottom{flex-wrap:wrap}
+}
+@media(max-width:480px){
+ .container{width:91%}
+ .hero h1{font-size:2.65rem}
+ .hero-copy{font-size:.95rem}
+ .hero-visual{min-height:270px}
+ .orbit{width:215px;height:215px}
+ .laptop-screen{border-width:5px;padding:9px}
+ .screen-art{height:48px}
+ .card{padding:19px}
+ .btn{padding:12px 15px}
+ .hero-actions .btn{flex:1}
+ .section-head{margin-bottom:28px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+ .reveal{opacity:1;transform:none}
+}
+</style>
+</body>
 </html>
