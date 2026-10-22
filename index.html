@@ -1,608 +1,800 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080914">
-<meta name="description" content="AzDar Web Studio — professional websites, Shopify store design and digital services.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b18">
+<meta name="description" content="AzDar Web Studio creates professional, mobile-friendly websites, Shopify stores and digital experiences for growing businesses.">
 <title>AzDar Web Studio | Your Vision, Our Code</title>
 <style>
-:root{
- --bg:#080914;--panel:#111426;--panel2:#171a30;
- --text:#f6f7ff;--muted:#a8adc7;--purple:#a855f7;
- --cyan:#42e8ff;--line:rgba(255,255,255,.13);
- --glow:0 0 35px rgba(168,85,247,.18);
+:root {
+  --bg: #080b18;
+  --surface: #10162a;
+  --surface2: #151d35;
+  --text: #f4f7ff;
+  --muted: #a6b0c8;
+  --cyan: #47eaff;
+  --purple: #a78bfa;
+  --line: rgba(255,255,255,.10);
+  --radius: 20px;
+  --max: 1160px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{
- font-family:Inter,system-ui,-apple-system,Arial,sans-serif;
- background:var(--bg);color:var(--text);line-height:1.65;
- overflow-x:hidden
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 80% 5%, #17234a 0, transparent 36%),
+    radial-gradient(ellipse at 0% 50%, #17102d 0, transparent 35%),
+    var(--bg);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
 }
-body:before{
- content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
- background:
- radial-gradient(ellipse at 10% 10%,rgba(168,85,247,.15),transparent 38%),
- radial-gradient(ellipse at 90% 30%,rgba(66,232,255,.09),transparent 34%),
- radial-gradient(ellipse at 50% 100%,rgba(168,85,247,.1),transparent 40%)
+body, button, input, textarea, select { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font-size: 16px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+.wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+.muted { color: var(--muted); }
+.gradient-text {
+  color: var(--cyan);
+  background: linear-gradient(100deg, #47eaff, #a78bfa 65%, #ff8bd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-body:after{
- content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
- opacity:.13;background-image:radial-gradient(#aab0ff .7px,transparent .7px);
- background-size:27px 27px;mask-image:linear-gradient(to bottom,black,transparent 90%)
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 7px 13px; border: 1px solid #47eaff40;
+  border-radius: 100px; background: #47eaff0c;
+  color: var(--cyan); font-size: 12px;
+  font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-button{cursor:pointer}
-img{max-width:100%;display:block}
-.container{width:min(1120px,92%);margin:auto}
-section{padding:90px 0;position:relative}
-.section-head{max-width:680px;margin:0 auto 38px;text-align:center}
-.eyebrow{
- display:inline-flex;gap:8px;align-items:center;color:var(--cyan);
- font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase
+.eyebrow:before {
+  content: ""; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
 }
-.section-head h2{font-size:clamp(2rem,5vw,3.2rem);line-height:1.12;margin:12px 0}
-.section-head p,.muted{color:var(--muted)}
-.gradient-text{
- background:linear-gradient(100deg,#fff 5%,var(--cyan) 45%,#c58aff 85%);
- -webkit-background-clip:text;background-clip:text;color:transparent
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 9px; min-height: 48px; padding: 12px 21px;
+  border: 1px solid var(--line); border-radius: 12px;
+  color: var(--text); background: #ffffff08;
+  font-weight: 750; transition: .25s ease;
 }
-.btn{
- display:inline-flex;align-items:center;justify-content:center;gap:9px;
- padding:13px 20px;border:1px solid var(--line);border-radius:12px;
- color:var(--text);background:rgba(255,255,255,.045);font-weight:750;
- transition:transform .25s,border-color .25s,box-shadow .25s,background .25s
+.btn:hover { transform: translateY(-3px); border-color: var(--cyan); }
+.btn-primary {
+  background: linear-gradient(110deg, #47eaff, #a78bfa);
+  color: #08101d; border: 0;
+  box-shadow: 0 8px 35px #47eaff20;
 }
-.btn-primary{
- color:#090a16;border:0;background:linear-gradient(110deg,var(--cyan),#b9a0ff,var(--purple));
- background-size:180% 180%;animation:gradientShift 5s ease infinite;
- box-shadow:0 8px 28px rgba(66,232,255,.15)
+.btn-primary:hover { box-shadow: 0 10px 40px #47eaff45; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: #080b18dc; backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
 }
-.btn:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 10px 30px #42e8ff18}
-.btn-primary:hover{box-shadow:0 10px 35px #a855f750}
-.btn-small{padding:9px 13px;font-size:.86rem}
-.grid{display:grid;gap:20px}
-.card{
- background:linear-gradient(145deg,rgba(24,27,49,.92),rgba(12,14,29,.95));
- border:1px solid var(--line);border-radius:20px;padding:24px;
- box-shadow:var(--glow);transition:transform .35s,border-color .35s,box-shadow .35s
+.nav {
+  min-height: 76px; display: flex; align-items: center;
+  justify-content: space-between; gap: 22px;
 }
-.card:hover{transform:translateY(-7px);border-color:#a855f77a;box-shadow:0 18px 48px #a855f71b}
-.pill{
- display:inline-flex;padding:5px 10px;border:1px solid #42e8ff40;
- border-radius:999px;color:var(--cyan);font-size:.75rem;font-weight:750
+.brand { display: flex; align-items: center; gap: 11px; font-weight: 900; }
+.brand-mark {
+  display: grid; place-items: center; width: 43px; height: 43px;
+  border-radius: 13px; background: linear-gradient(135deg, var(--cyan), var(--purple));
+  color: #08101d; font-size: 19px; box-shadow: 0 0 25px #47eaff22;
 }
-.site-header{
- position:sticky;top:0;z-index:50;background:#080914dc;
- border-bottom:1px solid var(--line);backdrop-filter:blur(18px)
+.brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 2px; }
+.nav-links { display: flex; align-items: center; gap: 22px; font-size: 13px; color: #c8d1e6; }
+.nav-links a:hover { color: var(--cyan); }
+.menu-toggle {
+  display: none; border: 1px solid var(--line); color: var(--text);
+  background: var(--surface); border-radius: 10px; width: 44px; height: 44px;
 }
-.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.5px}
-.brand-mark{
- width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
- background:linear-gradient(135deg,var(--purple),var(--cyan));color:#080914;
- box-shadow:0 0 25px #a855f744;font-weight:1000
+.hero { position: relative; padding: 94px 0 72px; }
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  align-items: center; gap: 50px;
 }
-.brand small{display:block;color:var(--muted);font-size:.65rem;letter-spacing:1.4px}
-.nav-links{display:flex;align-items:center;gap:20px;font-size:.9rem;color:#d6d9ef}
-.nav-links a{transition:color .2s}
-.nav-links a:hover{color:var(--cyan)}
-.menu-toggle{display:none}
-.hero{min-height:690px;display:flex;align-items:center;padding:75px 0 65px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:35px;align-items:center}
-.hero h1{font-size:clamp(2.6rem,6vw,5.1rem);line-height:1.02;letter-spacing:-2px;margin:20px 0}
-.hero-copy{font-size:1.04rem;color:var(--muted);max-width:580px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0}
-.hero-points{display:flex;flex-wrap:wrap;gap:17px;color:#c5c9e2;font-size:.83rem}
-.hero-points span:before{content:"✦";color:var(--cyan);margin-right:7px}
-.hero-visual{position:relative;min-height:380px;display:grid;place-items:center;perspective:1000px}
-.orbit{
- position:absolute;width:310px;height:310px;border:1px solid #a855f747;
- border-radius:50%;animation:orbitSpin 18s linear infinite
+.hero h1 {
+  font-size: clamp(40px, 5.7vw, 72px);
+  line-height: 1.06; letter-spacing: -2.8px;
+  margin: 22px 0;
 }
-.orbit:before,.orbit:after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
-.orbit:before{top:42px;left:40px}.orbit:after{right:18px;bottom:76px;background:var(--purple);box-shadow:0 0 18px var(--purple)}
-.laptop{position:relative;width:min(100%,450px);animation:laptopFloat 5s ease-in-out infinite;transform-style:preserve-3d}
-.laptop-screen{
- aspect-ratio:1.52;background:linear-gradient(145deg,#1c2140,#080b17);
- border:7px solid #34374e;border-bottom-width:10px;border-radius:15px 15px 5px 5px;
- padding:15px;box-shadow:0 0 40px #a855f729, inset 0 0 30px #42e8ff08
+.hero p { max-width: 570px; color: var(--muted); font-size: 17px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero-note { font-size: 12px !important; margin-top: 20px; }
+.visual {
+  min-height: 390px; position: relative; display: grid; place-items: center;
+  perspective: 1000px;
 }
-.screen-top{display:flex;gap:5px;margin-bottom:15px}
-.screen-top i{width:7px;height:7px;border-radius:50%;background:#ff729e}
-.screen-top i:nth-child(2){background:#ffc857}.screen-top i:nth-child(3){background:var(--cyan)}
-.screen-layout{display:grid;grid-template-columns:1fr .75fr;gap:12px;height:calc(100% - 25px)}
-.screen-block{border:1px solid #42e8ff30;border-radius:8px;padding:12px;background:#42e8ff08}
-.screen-line{height:7px;border-radius:8px;background:linear-gradient(90deg,var(--purple),var(--cyan));margin:9px 0;width:85%;animation:linePulse 3s ease-in-out infinite}
-.screen-line.short{width:48%}.screen-line.mid{width:67%}
-.screen-art{height:70px;border-radius:7px;margin:12px 0;background:linear-gradient(130deg,#a855f7,#42e8ff);animation:artGlow 4s ease-in-out infinite alternate}
-.laptop-base{height:13px;background:linear-gradient(#b7bbd0,#51556e);margin:0 -22px;border-radius:0 0 45% 45%;box-shadow:0 12px 22px #0008}
-.floating-chip{
- position:absolute;padding:11px 14px;border-radius:12px;border:1px solid #42e8ff55;
- background:#111426eF;box-shadow:0 8px 30px #0005;font-size:.8rem;font-weight:800;
- animation:chipFloat 4s ease-in-out infinite
+.orb {
+  position: absolute; width: 270px; height: 270px; border-radius: 50%;
+  background: linear-gradient(135deg, #47eaff30, #a78bfa28);
+  filter: blur(25px); animation: breathe 5s ease-in-out infinite;
 }
-.chip-one{top:28px;right:0}.chip-two{bottom:28px;left:0;animation-delay:-2s}
-.rotating-service{display:inline-block;min-width:8ch;color:var(--cyan);transition:opacity .3s,transform .3s}
-.hero-bottom{margin-top:35px;padding-top:23px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.83rem}
-@keyframes orbitSpin{to{transform:rotate(360deg)}}
-@keyframes laptopFloat{0%,100%{transform:translateY(0) rotateY(-3deg)}50%{transform:translateY(-12px) rotateY(3deg)}}
-@keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes linePulse{0%,100%{opacity:.6}50%{opacity:1}}
-@keyframes artGlow{from{filter:hue-rotate(0deg);transform:scale(.98)}to{filter:hue-rotate(30deg);transform:scale(1)}}
-@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes revealUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.float-icon{animation:chipFloat 4s ease-in-out infinite}
+.laptop {
+  position: relative; z-index: 2; width: 100%; max-width: 480px;
+  animation: float 6s ease-in-out infinite;
+}
+.laptop-screen {
+  border: 5px solid #303b56; border-bottom-width: 9px;
+  border-radius: 17px 17px 8px 8px; padding: 15px;
+  background: linear-gradient(135deg, #111a31, #0b1020);
+  box-shadow: 0 0 0 1px #ffffff10, 0 30px 90px #0008, 0 0 45px #47eaff12;
+}
+.screen-top { display: flex; gap: 5px; margin-bottom: 18px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #56647e; }
+.mock-title { font-size: 22px; font-weight: 900; line-height: 1.2; }
+.mock-card {
+  margin-top: 18px; padding: 15px; border: 1px solid #47eaff24;
+  border-radius: 12px; background: linear-gradient(120deg, #47eaff10, #a78bfa10);
+}
+.mock-line { height: 6px; width: 80%; background: #ffffff19; border-radius: 9px; margin-top: 10px; }
+.mock-line.short { width: 48%; }
+.mock-bars { display: flex; gap: 8px; margin-top: 17px; }
+.mock-bars span { flex: 1; height: 42px; border-radius: 7px; background: #47eaff15; border: 1px solid #47eaff1d; }
+.laptop-base {
+  height: 13px; margin: 0 -5%; border-radius: 0 0 30px 30px;
+  background: linear-gradient(#8c9bb3, #3c4a64 45%, #202c42);
+}
+.float-tag {
+  position: absolute; z-index: 3; padding: 12px 15px;
+  border: 1px solid #ffffff20; border-radius: 13px;
+  background: #11182bea; backdrop-filter: blur(14px);
+  box-shadow: 0 15px 35px #0004; font-size: 12px; font-weight: 800;
+}
+.tag-one { top: 48px; right: 0; animation: float 5s ease-in-out infinite; }
+.tag-two { bottom: 55px; left: 0; animation: float 5.5s ease-in-out infinite reverse; }
+@keyframes float { 0%,100% { transform: translateY(0) rotateX(0); } 50% { transform: translateY(-12px) rotateX(2deg); } }
+@keyframes breathe { 0%,100% { transform: scale(.92); opacity: .6; } 50% { transform: scale(1.08); opacity: 1; } }
+.stats {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+  margin-top: 35px; max-width: 500px;
+}
+.stat { border-left: 2px solid #47eaff55; padding-left: 13px; }
+.stat strong { display: block; font-size: 19px; }
+.stat span { font-size: 11px; color: var(--muted); }
+section { padding: 76px 0; }
+.section-head { max-width: 680px; margin-bottom: 34px; }
+.section-head h2 { font-size: clamp(29px, 4vw, 46px); line-height: 1.15; letter-spacing: -1.2px; margin: 14px 0; }
+.section-head p { color: var(--muted); margin: 0; }
 </style>
 </head>
-  <body>
-<header class="site-header">
- <div class="container nav">
-  <a class="brand" href="#home" aria-label="AzDar Web Studio home">
-   <span class="brand-mark">AZ</span>
-   <span>AzDar Web Studio<small>YOUR VISION, OUR CODE</small></span>
-  </a>
-  <button class="btn btn-small menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
-  <nav class="nav-links" id="navLinks">
-   <a href="#home">Home</a><a href="#portfolio">Portfolio</a>
-   <a href="#services">Services</a><a href="#pricing">Pricing</a>
-   <a href="#reviews">Reviews</a><a href="#contact" class="btn btn-small">Get a Quote ↗</a>
-  </nav>
- </div>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="AzDar Web Studio home">
+      <span class="brand-mark">A<span style="color:#fff">Z</span></span>
+      <span>AzDar Web Studio<small>YOUR VISION, OUR CODE</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
 </header>
 
 <main>
 <section class="hero" id="home">
- <div class="container">
-  <div class="hero-grid">
-   <div class="reveal">
-    <span class="pill">✦ DIGITAL EXPERIENCES, BUILT WITH PURPOSE</span>
-    <h1>We build websites that make your <span class="gradient-text">business stand out.</span></h1>
-    <p class="hero-copy">From professional business websites to Shopify store design, we help turn your ideas into a polished online presence.</p>
-    <div class="hero-actions">
-     <a class="btn btn-primary" href="#order">Start Your Project ↗</a>
-     <a class="btn" href="#portfolio">Explore Our Work ↓</a>
-    </div>
-    <div class="hero-points">
-     <span>Mobile-friendly design</span><span>Custom layouts</span><span>Clear communication</span>
-    </div>
-   </div>
-   <div class="hero-visual reveal">
-    <div class="orbit"></div>
-    <div class="laptop">
-     <div class="laptop-screen">
-      <div class="screen-top"><i></i><i></i><i></i></div>
-      <div class="screen-layout">
-       <div class="screen-block">
-        <div class="screen-line short"></div><div class="screen-line"></div>
-        <div class="screen-line mid"></div><div class="screen-art"></div>
-        <div class="screen-line short"></div>
-       </div>
-       <div class="screen-block">
-        <div class="screen-art" style="height:48px"></div>
-        <div class="screen-line"></div><div class="screen-line mid"></div>
-        <div class="screen-line short"></div><div class="screen-line"></div>
-       </div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Digital experiences that stand out</span>
+      <h1>Your Business.<br>Your Vision.<br><span class="gradient-text">Our Code.</span></h1>
+      <p>We design modern websites and digital experiences that help businesses build credibility, showcase their services and connect with customers.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Start Your Project ↗</a>
+        <a class="btn" href="#portfolio">Explore Our Work →</a>
       </div>
-     </div>
-     <div class="laptop-base"></div>
+      <div class="stats">
+        <div class="stat"><strong>Mobile First</strong><span>Responsive layouts</span></div>
+        <div class="stat"><strong>Custom</strong><span>Made for your brand</span></div>
+        <div class="stat"><strong>Modern</strong><span>Clean user experience</span></div>
+      </div>
+      <p class="hero-note">Independent digital studio · Pakistan · Online inquiries welcome</p>
     </div>
-    <div class="floating-chip chip-one">✦ Creative Design</div>
-    <div class="floating-chip chip-two">⌘ <span class="rotating-service" id="heroService">Web Development</span></div>
-   </div>
-  </div>
-  <div class="hero-bottom">
-   <span>AZDAR WEB STUDIO</span><span>Design · Development · Digital Growth</span>
-  </div>
- </div>
-</section>
-
-<section id="portfolio">
- <div class="container">
-  <div class="section-head reveal">
-   <span class="eyebrow">Selected Work</span>
-   <h2>Ideas turned into <span class="gradient-text">digital experiences.</span></h2>
-   <p>Sample concept projects to show the styles and solutions we can create for your business.</p>
-  </div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))">
-   <article class="card reveal">
-    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#22234c,#a855f7,#42e8ff);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px">▣</div>
-    <span class="pill">Business Website</span><h3 style="margin:12px 0 6px">Modern Business Presence</h3>
-    <p class="muted">A responsive layout for services, company details and customer enquiries.</p>
-    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="Business Website">Build Something Similar ↗</a>
-   </article>
-   <article class="card reveal">
-    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#163d51,#42e8ff,#b8faff);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px;color:#080914">🛍</div>
-    <span class="pill">E-commerce Concept</span><h3 style="margin:12px 0 6px">Online Store Experience</h3>
-    <p class="muted">Product-focused layouts with a clear shopping journey and mobile-first design.</p>
-    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="E-commerce Store">Build Something Similar ↗</a>
-   </article>
-   <article class="card reveal">
-    <div style="height:160px;border-radius:13px;background:linear-gradient(135deg,#352050,#e06bca,#ffbd85);display:grid;place-items:center;font-size:2.3rem;margin-bottom:20px">✧</div>
-    <span class="pill">Custom Design</span><h3 style="margin:12px 0 6px">Brand Landing Page</h3>
-    <p class="muted">A focused landing page with bold visuals, service highlights and strong calls to action.</p>
-    <a class="btn btn-small" style="margin-top:17px" href="#order" data-project="Landing Page">Build Something Similar ↗</a>
-   </article>
-  </div>
-  <p class="muted" style="text-align:center;font-size:.8rem;margin-top:18px">Portfolio cards above are illustrative concepts, not claims of completed client projects.</p>
- </div>
-</section>
-
-<section id="services" style="padding-top:35px">
- <div class="container">
-  <div class="section-head reveal"><span class="eyebrow">What We Do</span><h2>Services built around <span class="gradient-text">your goals.</span></h2></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr))">
-   <article class="card reveal"><div class="float-icon" style="font-size:2rem">⌘</div><h3>Web Development</h3><p class="muted">Professional, responsive websites for businesses, brands and personal projects.</p></article>
-   <article class="card reveal"><div class="float-icon" style="font-size:2rem">▣</div><h3>Shopify Store Design</h3><p class="muted">Store layouts, product pages and storefront styling to suit your brand.</p></article>
-   <article class="card reveal"><div class="float-icon" style="font-size:2rem">✧</div><h3>Custom Websites</h3><p class="muted">A tailored design shaped around your features, content and workflow.</p></article>
-   <article class="card reveal"><div class="float-icon" style="font-size:2rem">◎</div><h3>Social Media Services</h3><p class="muted">Help with a consistent, professional digital presence for your business.</p></article>
-  </div>
- </div>
-</section>
-  <section id="pricing">
- <div class="container">
-  <div class="section-head reveal">
-   <span class="eyebrow">Transparent Starting Prices</span>
-   <h2>Choose a plan that fits <span class="gradient-text">your project.</span></h2>
-   <p>Final quote project requirements, content and features confirm karne ke baad di jayegi.</p>
-  </div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
-   <article class="card reveal">
-    <span class="pill">Starter</span><h3 style="margin-top:16px">Basic Website</h3>
-    <p class="muted">For a simple professional online presence.</p>
-    <h2 style="margin:20px 0">Rs. 15,000 <small style="font-size:.8rem;color:var(--muted)">starting</small></h2>
-    <p>✓ Essential pages<br>✓ Mobile-friendly layout<br>✓ Contact section<br>✓ Basic animations</p>
-    <a class="btn" style="margin-top:22px;width:100%" href="#order" data-plan="Basic Website">Choose Starter</a>
-   </article>
-   <article class="card reveal" style="border-color:#a855f780;position:relative">
-    <span class="pill">Popular Choice</span><h3 style="margin-top:16px">Business Website</h3>
-    <p class="muted">For brands that need a polished presence.</p>
-    <h2 style="margin:20px 0">Rs. 25,000 <small style="font-size:.8rem;color:var(--muted)">starting</small></h2>
-    <p>✓ Custom design<br>✓ Multiple sections<br>✓ Advanced animations<br>✓ Enquiry form<br>✓ Responsive layout</p>
-    <a class="btn btn-primary" style="margin-top:22px;width:100%" href="#order" data-plan="Business Website">Choose Business</a>
-   </article>
-   <article class="card reveal">
-    <span class="pill">Custom Scope</span><h3 style="margin-top:16px">Shopify / Custom</h3>
-    <p class="muted">For online stores and special requirements.</p>
-    <h2 style="margin:20px 0">Custom Quote</h2>
-    <p>✓ Requirements-based scope<br>✓ Storefront design<br>✓ Feature planning<br>✓ Delivery timeline quote</p>
-    <a class="btn" style="margin-top:22px;width:100%" href="#order" data-plan="Shopify / Custom Website">Request Quote</a>
-   </article>
-  </div>
-
-  <div class="card reveal" style="max-width:720px;margin:32px auto 0">
-   <h3>Quick Price Estimator</h3>
-   <p class="muted" style="margin-bottom:20px">Estimate a starting budget. This is not a confirmed quote.</p>
-   <label for="priceService">Select service</label>
-   <select id="priceService" style="width:100%;margin:7px 0 18px;padding:13px;background:#0b0d1c;color:white;border:1px solid var(--line);border-radius:10px">
-    <option value="basic">Basic Website</option>
-    <option value="business">Business Website</option>
-    <option value="shopify">Shopify Store Design</option>
-    <option value="custom">Custom Website</option>
-   </select>
-   <label for="pricePages">Number of pages / sections</label>
-   <select id="pricePages" style="width:100%;margin:7px 0 18px;padding:13px;background:#0b0d1c;color:white;border:1px solid var(--line);border-radius:10px">
-    <option value="1">Up to 5</option><option value="2">6–10</option><option value="3">11+</option>
-   </select>
-   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <div><span class="muted">Estimated starting total</span><h2 id="priceResult" class="gradient-text">Rs. 15,000</h2></div>
-    <a class="btn btn-primary" id="estimateOrder" href="#order">Request This Quote ↗</a>
-   </div>
-  </div>
- </div>
-</section>
-
-<section id="order">
- <div class="container">
-  <div class="section-head reveal">
-   <span class="eyebrow">Start a Project</span>
-   <h2>Tell us what you're <span class="gradient-text">building.</span></h2>
-   <p>Form fill karo; WhatsApp par tumhari project details ready message ki form mein khul jayengi.</p>
-  </div>
-  <div class="card reveal" style="max-width:760px;margin:auto">
-   <form id="orderForm">
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))">
-     <div><label for="customerName">Your name *</label><input id="customerName" name="name" required maxlength="100" placeholder="Enter your name"></div>
-     <div><label for="customerPhone">WhatsApp / phone *</label><input id="customerPhone" name="phone" required maxlength="30" placeholder="+92..." inputmode="tel"></div>
-     <div><label for="customerEmail">Email (optional)</label><input id="customerEmail" name="email" type="email" maxlength="150" placeholder="you@example.com"></div>
-     <div><label for="orderService">Service *</label><select id="orderService" name="service" required><option value="">Choose service</option><option>Web Development</option><option>Shopify Store Design</option><option>Custom Website</option><option>Social Media Services</option><option>Other</option></select></div>
-     <div><label for="orderBudget">Estimated budget</label><select id="orderBudget" name="budget"><option>Need guidance</option><option>Under Rs. 15,000</option><option>Rs. 15,000–25,000</option><option>Rs. 25,000–50,000</option><option>Rs. 50,000+</option></select></div>
-     <div><label for="orderTimeline">Preferred timeline</label><select id="orderTimeline" name="timeline"><option>Flexible</option><option>Within 1 week</option><option>2–3 weeks</option><option>1 month or more</option></select></div>
+    <div class="visual" aria-label="Animated website displayed on a laptop">
+      <div class="orb"></div>
+      <div class="float-tag tag-one">✦ Modern UI Design</div>
+      <div class="float-tag tag-two">↗ Built for your business</div>
+      <div class="laptop">
+        <div class="laptop-screen">
+          <div class="screen-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+          <div style="font-size:10px;color:#47eaff;font-weight:800;letter-spacing:2px">AZDAR / DIGITAL STUDIO</div>
+          <div class="mock-title" style="margin-top:13px">Build something<br><span class="gradient-text">remarkable.</span></div>
+          <div class="mock-line"></div><div class="mock-line short"></div>
+          <div class="mock-card">
+            <div style="font-size:10px;color:#a6b0c8">DIGITAL SOLUTIONS</div>
+            <div class="mock-bars"><span></span><span></span><span></span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:14px;font-size:9px;color:#a6b0c8"><span>DESIGN</span><span>DEVELOPMENT</span><span>GROWTH</span></div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
     </div>
-    <div style="margin-top:18px"><label for="orderDetails">Project details *</label><textarea id="orderDetails" name="details" required maxlength="2000" rows="5" placeholder="Website ka purpose, required pages aur features batayein..."></textarea></div>
-    <button class="btn btn-primary" type="submit" style="width:100%;margin-top:20px">Send Project Details on WhatsApp ↗</button>
-    <p class="muted" style="font-size:.78rem;margin-top:12px">Form data automatically kisi server ko send nahi hota. Submit karne par WhatsApp khulta hai.</p>
-   </form>
   </div>
- </div>
-</section>
-  <section id="reviews">
- <div class="container">
-  <div class="section-head reveal"><span class="eyebrow">Client Feedback</span><h2>Trust starts with <span class="gradient-text">good communication.</span></h2><p>Review section ready hai. Publish karne se pehle sirf genuine client feedback add karna.</p></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">
-   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“Professional design aur clear communication hamare project ke liye important hain.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
-   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“A good website should look polished on both mobile and desktop.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
-   <article class="card reveal"><div style="color:#ffd66b;letter-spacing:3px">★★★★★</div><p style="margin:12px 0">“The goal is to create a website that fits the business and its customers.”</p><strong>Sample Review</strong><p class="muted" style="font-size:.8rem">Demo text — not a verified customer testimonial</p></article>
-  </div>
- </div>
 </section>
 
-<section id="contact">
- <div class="container">
-  <div class="section-head reveal"><span class="eyebrow">Let's Talk</span><h2>Your idea deserves a <span class="gradient-text">great website.</span></h2><p>Apni requirements share karo. Hum project scope, price aur timeline discuss karenge.</p></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))">
-   <a class="card reveal" href="https://wa.me/923002867506" target="_blank" rel="noopener"><span class="eyebrow">WHATSAPP</span><h3 style="margin:10px 0">0300 2867506</h3><p class="muted">Discuss your project directly ↗</p></a>
-   <a class="card reveal" href="mailto:azdarwattoo@gmail.com"><span class="eyebrow">EMAIL</span><h3 style="margin:10px 0;overflow-wrap:anywhere">azdarwattoo@gmail.com</h3><p class="muted">Send your project enquiry ↗</p></a>
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Digital solutions for your <span class="gradient-text">next big idea.</span></h2>
+      <p>Flexible services for startups, local businesses, creators and growing brands.</p>
+    </div>
+    <div class="service-grid">
+      <article class="glass service-card">
+        <div class="service-icon">⌘</div><h3>Website Development</h3>
+        <p>Professional business websites with clear navigation, responsive layouts and custom styling.</p>
+        <a href="#contact" class="text-link" data-service="Website Development">Discuss your website ↗</a>
+      </article>
+      <article class="glass service-card">
+        <div class="service-icon">▣</div><h3>Shopify Store Design</h3>
+        <p>Storefront design, product presentation, collections and a consistent e-commerce brand experience.</p>
+        <a href="#contact" class="text-link" data-service="Shopify Store Design">Discuss your store ↗</a>
+      </article>
+      <article class="glass service-card">
+        <div class="service-icon">◈</div><h3>Custom Websites</h3>
+        <p>Purpose-built landing pages, portfolios and website interfaces tailored to your requirements.</p>
+        <a href="#contact" class="text-link" data-service="Custom Website">Plan a custom project ↗</a>
+      </article>
+      <article class="glass service-card">
+        <div class="service-icon">▤</div><h3>Mobile-Friendly Design</h3>
+        <p>Layouts designed to work smoothly across phones, tablets and desktop screens.</p>
+        <a href="#contact" class="text-link" data-service="Mobile-Friendly Website">Make it responsive ↗</a>
+      </article>
+      <article class="glass service-card">
+        <div class="service-icon">◎</div><h3>Social Media Services</h3>
+        <p>Support for business profiles, brand presentation and social media content needs.</p>
+        <a href="#contact" class="text-link" data-service="Social Media Services">Grow your presence ↗</a>
+      </article>
+      <article class="glass service-card">
+        <div class="service-icon">✧</div><h3>Website Refresh</h3>
+        <p>Improve your existing website's visual design, structure and customer experience.</p>
+        <a href="#contact" class="text-link" data-service="Website Redesign">Upgrade my website ↗</a>
+      </article>
+    </div>
   </div>
- </div>
 </section>
 
-<footer style="padding:28px 0;border-top:1px solid var(--line)">
- <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap">
-  <div><strong>AzDar Web Studio</strong><p class="muted" style="font-size:.8rem">Your Vision, Our Code.</p></div>
-  <p class="muted" style="font-size:.8rem">Created by Azmat Ali · <span id="year"></span></p>
-  <a href="#home" class="btn btn-small">Back to top ↑</a>
- </div>
+<section id="portfolio" class="alternate">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Selected concepts</span>
+      <h2>Ideas brought to <span class="gradient-text">the screen.</span></h2>
+      <p>Illustrative project concepts showing the types of digital experiences the studio can build.</p>
+    </div>
+    <div class="portfolio-grid">
+      <article class="project glass">
+        <div class="project-art art-one"><div class="art-window"><span>BRAND / 01</span><b>Make your<br>first impression<br><em>count.</em></b><i></i><i></i></div></div>
+        <div class="project-info"><div><h3>Business Website</h3><p>Professional landing page concept</p></div><span class="project-num">01</span></div>
+      </article>
+      <article class="project glass">
+        <div class="project-art art-two"><div class="product-shape">A</div><div class="art-caption">THE NEW COLLECTION</div></div>
+        <div class="project-info"><div><h3>E-commerce Store</h3><p>Modern product showcase concept</p></div><span class="project-num">02</span></div>
+      </article>
+      <article class="project glass">
+        <div class="project-art art-three"><div class="dashboard"><div class="dash-sidebar"></div><div class="dash-content"><i></i><i></i><i></i><div class="dash-chart"></div></div></div></div>
+        <div class="project-info"><div><h3>Digital Dashboard</h3><p>Clean interface concept</p></div><span class="project-num">03</span></div>
+      </article>
+    </div>
+    <p class="muted small-note">Portfolio previews are illustrative concepts, not claims of completed client projects.</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Simple starting points</span>
+      <h2>Choose your <span class="gradient-text">project direction.</span></h2>
+      <p>Every project is different. Confirm the scope and final quote with us before ordering.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="glass price-card">
+        <span class="price-label">01 / STARTER</span><h3>Landing Page</h3>
+        <p>A focused page for a product, service or campaign.</p>
+        <div class="price-value">Custom <small>quote</small></div>
+        <ul><li>Responsive single-page layout</li><li>Core business information</li><li>Contact call-to-action</li><li>Basic visual styling</li></ul>
+        <button class="btn choose-plan" data-plan="Landing Page">Request a quote</button>
+      </article>
+      <article class="glass price-card featured">
+        <span class="price-label">02 / BUSINESS</span><h3>Business Website</h3>
+        <p>A professional multi-section business presence.</p>
+        <div class="price-value">Custom <small>quote</small></div>
+        <ul><li>Custom design and sections</li><li>Services and portfolio</li><li>Responsive page structure</li><li>Contact or inquiry form</li></ul>
+        <button class="btn btn-primary choose-plan" data-plan="Business Website">Request a quote ↗</button>
+      </article>
+      <article class="glass price-card">
+        <span class="price-label">03 / E-COMMERCE</span><h3>Shopify Store</h3>
+        <p>A storefront tailored to your products and brand.</p>
+        <div class="price-value">Custom <small>quote</small></div>
+        <ul><li>Storefront styling</li><li>Product presentation</li><li>Collections layout</li><li>Platform needs discussed first</li></ul>
+        <button class="btn choose-plan" data-plan="Shopify Store Design">Request a quote</button>
+      </article>
+    </div>
+    <p class="muted small-note">Shopify subscription, domain, paid themes, third-party apps and other external costs are not included unless agreed in writing.</p>
+  </div>
+</section>
+
+<section id="reviews" class="alternate">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Built around your needs</span>
+      <h2>A better experience, <span class="gradient-text">from start to finish.</span></h2>
+      <p>Clear communication, a defined project scope and a design that fits your goals.</p>
+    </div>
+    <div class="review-grid">
+      <article class="glass review-card"><div class="review-symbol">“</div><h3>Clear communication</h3><p>Discuss requirements, timelines and deliverables before work begins.</p><span class="review-caption">OUR APPROACH / 01</span></article>
+      <article class="glass review-card"><div class="review-symbol">✦</div><h3>Design with purpose</h3><p>Focus on readability, brand identity and a smooth mobile experience.</p><span class="review-caption">OUR APPROACH / 02</span></article>
+      <article class="glass review-card"><div class="review-symbol">↗</div><h3>Project transparency</h3><p>Agree on scope, revisions, delivery and payment terms in advance.</p><span class="review-caption">OUR APPROACH / 03</span></article>
+    </div>
+    <p class="muted small-note">These are studio principles, not fabricated customer testimonials. Add genuine client reviews after obtaining permission.</p>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From first message to <span class="gradient-text">launch day.</span></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step"><span>01</span><h3>Tell us your idea</h3><p class="muted">Share your business, goals and required features.</p></div>
+      <div class="process-step"><span>02</span><h3>Agree on the scope</h3><p class="muted">Confirm pricing, timeline and deliverables.</p></div>
+      <div class="process-step"><span>03</span><h3>Design & build</h3><p class="muted">Develop the agreed website or store experience.</p></div>
+      <div class="process-step"><span>04</span><h3>Review & deliver</h3><p class="muted">Review the result and arrange final handover.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alternate">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">Let's work together</span>
+      <h2 class="contact-title">Have an idea?<br><span class="gradient-text">Let's build it.</span></h2>
+      <p class="muted">Tell us a little about your project. We'll prepare a message you can send to the studio.</p>
+      <div class="contact-method"><span class="contact-icon">✉</span><div><b>Email</b><a href="mailto:azdarwattoo@gmail.com">azdarwattoo@gmail.com</a></div></div>
+      <div class="contact-method"><span class="contact-icon">◉</span><div><b>WhatsApp</b><a href="https://wa.me/923002867506" target="_blank" rel="noopener noreferrer">0300 2867506</a></div></div>
+      <div class="contact-method"><span class="contact-icon">⌖</span><div><b>Service area</b><span>Pakistan · Online projects</span></div></div>
+    </div>
+    <form id="orderForm" class="glass order-form">
+      <h3>Project inquiry</h3><p class="muted">Fields marked * are required.</p>
+      <label for="clientName">Your name *</label>
+      <input id="clientName" name="name" required maxlength="100" placeholder="Enter your name">
+      <label for="clientEmail">Email address</label>
+      <input id="clientEmail" name="email" type="email" maxlength="150" placeholder="you@example.com">
+      <label for="clientService">Service required *</label>
+      <select id="clientService" name="service" required>
+        <option value="">Choose a service</option>
+        <option>Website Development</option><option>Shopify Store Design</option>
+        <option>Custom Website</option><option>Mobile-Friendly Website</option>
+        <option>Social Media Services</option><option>Website Redesign</option>
+        <option>Other / Not sure yet</option>
+      </select>
+      <label for="clientBudget">Approximate budget</label>
+      <select id="clientBudget" name="budget">
+        <option value="Discuss first">I'd like to discuss first</option>
+        <option>Under Rs. 10,000</option><option>Rs. 10,000–25,000</option>
+        <option>Rs. 25,000–50,000</option><option>Rs. 50,000+</option>
+      </select>
+      <label for="clientDetails">Project details *</label>
+      <textarea id="clientDetails" name="details" required maxlength="2000" rows="4" placeholder="What would you like us to create?"></textarea>
+      <button class="btn btn-primary form-submit" type="submit">Prepare WhatsApp inquiry ↗</button>
+      <p class="form-note">Your message opens in WhatsApp for you to review and send. This demo does not save orders to a server.</p>
+      <div id="formStatus" class="status-message" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Common questions</span><h2>Good to know <span class="gradient-text">before we start.</span></h2></div>
+    <div class="faq-list">
+      <details><summary>Can you build a website for my business?</summary><p>Yes. Share your business type, preferred features and goals through the inquiry form.</p></details>
+      <details><summary>Do you design Shopify stores?</summary><p>Yes, Shopify storefront design can be discussed. Platform subscriptions and third-party costs are separate unless agreed otherwise.</p></details>
+      <details><summary>How much does a website cost?</summary><p>Pricing depends on scope, features, content and integrations. Send an inquiry to request a tailored quote.</p></details>
+      <details><summary>Will the website work on mobile?</summary><p>This template is responsive. The final production website should be tested on the devices and browsers that matter to your customers.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-main">
+    <div><a class="brand" href="#home"><span class="brand-mark">AZ</span><span>AzDar Web Studio<small>YOUR VISION, OUR CODE</small></span></a><p class="muted footer-desc">Professional websites and digital experiences for ambitious businesses.</p></div>
+    <div><h4>Explore</h4><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#pricing">Pricing</a></div>
+    <div><h4>Get in touch</h4><a href="#contact">Project inquiry</a><a href="mailto:azdarwattoo@gmail.com">Email studio</a><a href="https://wa.me/923002867506" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+  </div>
+  <div class="wrap footer-bottom"><span>© <span id="year"></span> AzDar Web Studio</span><span>Created by Azmat Ali</span><a href="#home">Back to top ↑</a></div>
 </footer>
 
-<!-- WhatsApp-style live contact shortcut. This is not a real-time chat server. -->
-<a id="chatLauncher" href="https://wa.me/923002867506?text=Hi%20AzDar%20Web%20Studio%2C%20I%20want%20to%20discuss%20a%20project."
- target="_blank" rel="noopener" aria-label="Chat with AzDar Web Studio"
- style="position:fixed;right:18px;bottom:18px;z-index:80;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#080914;font-size:1.45rem;box-shadow:0 8px 30px #42e8ff55;animation:chipFloat 3s ease-in-out infinite">✉</a>
+<button id="chatLauncher" class="chat-launcher" aria-label="Open live chat demo" aria-expanded="false">☏ <span>Chat with us</span></button>
+<aside id="chatPanel" class="chat-panel" aria-label="Live chat demo" hidden>
+  <div class="chat-head"><div><b>AzDar Support</b><small>Website chat demo</small></div><button id="chatClose" aria-label="Close chat">×</button></div>
+  <div id="chatMessages" class="chat-messages" aria-live="polite"><div class="chat-bubble bot">Hi! Welcome to AzDar Web Studio. What kind of website or service are you looking for?</div></div>
+  <form id="chatForm" class="chat-input"><input id="chatText" maxlength="500" placeholder="Write a message..." aria-label="Chat message" required><button aria-label="Send message">➤</button></form>
+  <p class="chat-disclaimer">Automated demo · No live agent connected</p>
+</aside>
 
-<!-- Front-end admin demo. Never enter real passwords or sensitive customer data here. -->
-<section id="admin" style="padding:50px 0">
- <div class="container">
-  <div class="section-head"><span class="eyebrow">Owner Tools · Demo</span><h2>Admin <span class="gradient-text">Dashboard</span></h2><p>This local demo lets you preview site controls in this browser only.</p></div>
-  <div class="card" style="max-width:700px;margin:auto">
-   <p class="muted" style="margin-bottom:16px">Demo access code: <strong style="color:var(--cyan)">AZDAR-DEMO</strong>. This is not secure authentication.</p>
-   <form id="adminLogin">
-    <label for="adminCode">Demo access code</label>
-    <input id="adminCode" type="password" autocomplete="off" placeholder="Enter demo code" required>
-    <button class="btn btn-primary" style="width:100%;margin-top:14px" type="submit">Open Demo Dashboard</button>
-   </form>
-   <div id="adminPanel" hidden style="margin-top:24px">
-    <h3>Website controls</h3>
-    <p class="muted" style="margin:6px 0 15px">Changes below apply to this browser only.</p>
-    <label for="adminAnnouncement">Announcement text</label>
-    <input id="adminAnnouncement" maxlength="180" placeholder="e.g. New project bookings open">
-    <button class="btn" id="saveAnnouncement" style="margin-top:12px">Preview Announcement</button>
-    <div id="announcementPreview" class="pill" style="display:none;margin-top:15px"></div>
-    <button class="btn" id="adminLogout" style="margin-top:18px">Close Dashboard</button>
-   </div>
-   <p id="adminMessage" role="status" class="muted" style="margin-top:12px"></p>
-  </div>
- </div>
-</section>
-  <script>
-"use strict";
+<dialog id="adminDialog" class="admin-dialog">
+  <div class="admin-top"><div><span class="eyebrow">Local demo</span><h2>Studio dashboard</h2></div><button id="adminClose" class="btn" type="button">Close ×</button></div>
+  <p class="muted">This is a browser-only preview. It is not a secure, server-backed admin panel.</p>
+  <div class="admin-stats"><div class="glass"><span>Inquiry system</span><b>WhatsApp</b></div><div class="glass"><span>Order storage</span><b>Not connected</b></div><div class="glass"><span>Authentication</span><b>Not enabled</b></div></div>
+  <h3>Editable demo settings</h3>
+  <label for="adminStudioName">Studio display name</label><input id="adminStudioName" value="AzDar Web Studio" maxlength="100">
+  <label for="adminTagline">Tagline</label><input id="adminTagline" value="Your Vision, Our Code" maxlength="160">
+  <label for="adminEmail">Contact email</label><input id="adminEmail" value="azdarwattoo@gmail.com" type="email" maxlength="150">
+  <label for="adminPhone">WhatsApp number (international format)</label><input id="adminPhone" value="923002867506" inputmode="numeric" maxlength="20">
+  <button class="btn btn-primary" id="adminSave" type="button">Apply to this preview</button>
+  <p id="adminStatus" class="form-note" role="status">Changes affect this open page only; they are not stored in a database.</p>
+  <hr>
+  <h3>Pricing display editor</h3>
+  <label for="adminStarter">Landing page display price</label><input id="adminStarter" value="Custom quote" maxlength="60">
+  <label for="adminBusiness">Business website display price</label><input id="adminBusiness" value="Custom quote" maxlength="60">
+  <label for="adminShopify">Shopify store display price</label><input id="adminShopify" value="Custom quote" maxlength="60">
+  <button class="btn" id="adminPriceSave" type="button">Update displayed prices</button>
+</dialog>
 
-/* Rotating service titles */
-const rotatingServices = [
- "Web Development",
- "Shopify Store Design",
- "Custom Websites",
- "Mobile-Friendly Design"
-];
-let serviceIndex = 0;
-const heroService = document.getElementById("heroService");
-if (heroService) {
- setInterval(() => {
-  heroService.style.opacity = "0";
-  heroService.style.transform = "translateY(8px)";
-  setTimeout(() => {
-   serviceIndex = (serviceIndex + 1) % rotatingServices.length;
-   heroService.textContent = rotatingServices[serviceIndex];
-   heroService.style.opacity = "1";
-   heroService.style.transform = "translateY(0)";
-  }, 250);
- }, 2400);
-}
+<button id="adminLauncher" class="admin-launcher" type="button">Admin Demo</button>
 
-/* Scroll reveal with graceful fallback */
-const revealItems = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window) {
- const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-   if (entry.isIntersecting) {
-    entry.target.classList.add("visible");
-    revealObserver.unobserve(entry.target);
-   }
-  });
- }, {threshold: 0.12});
- revealItems.forEach(item => revealObserver.observe(item));
-} else {
- revealItems.forEach(item => item.classList.add("visible"));
-}
-
-/* Mobile navigation */
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-if (menuToggle && navLinks) {
- menuToggle.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("nav-open");
-  menuToggle.setAttribute("aria-expanded", String(open));
-  menuToggle.textContent = open ? "✕" : "☰";
- });
- navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-  navLinks.classList.remove("nav-open");
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.textContent = "☰";
- }));
-}
-
-/* Pricing estimator — edit these starting prices as needed */
-const PRICES = {
- basic: 15000,
- business: 25000,
- shopify: 30000,
- custom: 35000
-};
-const serviceNames = {
- basic: "Basic Website",
- business: "Business Website",
- shopify: "Shopify Store Design",
- custom: "Custom Website"
-};
-const priceService = document.getElementById("priceService");
-const pricePages = document.getElementById("pricePages");
-const priceResult = document.getElementById("priceResult");
-const estimateOrder = document.getElementById("estimateOrder");
-
-function updateEstimate() {
- if (!priceService || !pricePages || !priceResult) return;
- const base = PRICES[priceService.value] || PRICES.basic;
- const multiplier = Number(pricePages.value) || 1;
- const total = Math.round(base + (multiplier - 1) * base * 0.2);
- priceResult.textContent = "Rs. " + total.toLocaleString("en-PK");
- if (estimateOrder) {
-  estimateOrder.href = "#order";
-  estimateOrder.dataset.plan = serviceNames[priceService.value] || "Website";
-  estimateOrder.dataset.estimate = String(total);
- }
-}
-if (priceService) priceService.addEventListener("change", updateEstimate);
-if (pricePages) pricePages.addEventListener("change", updateEstimate);
-updateEstimate();
-
-/* Pre-fill order form from plan/project links */
-document.querySelectorAll("[data-plan], [data-project]").forEach(link => {
- link.addEventListener("click", () => {
-  const plan = link.dataset.plan || link.dataset.project || "";
-  const service = document.getElementById("orderService");
-  const details = document.getElementById("orderDetails");
-  if (service && /shopify/i.test(plan)) service.value = "Shopify Store Design";
-  else if (service && /custom|landing/i.test(plan)) service.value = "Custom Website";
-  else if (service && /business|basic/i.test(plan)) service.value = "Web Development";
-  if (details && !details.value) details.value = "Interested in: " + plan + ". Please share the final quote and timeline.";
- });
-});
-
-/* Order form opens WhatsApp with a pre-filled message */
-const orderForm = document.getElementById("orderForm");
-if (orderForm) {
- orderForm.addEventListener("submit", event => {
-  event.preventDefault();
-  if (!orderForm.reportValidity()) return;
-  const data = new FormData(orderForm);
-  const message = [
-   "Assalam-o-Alaikum AzDar Web Studio!",
-   "",
-   "New Project Enquiry",
-   "Name: " + (data.get("name") || ""),
-   "Phone: " + (data.get("phone") || ""),
-   "Email: " + (data.get("email") || "Not provided"),
-   "Service: " + (data.get("service") || ""),
-   "Budget: " + (data.get("budget") || ""),
-   "Timeline: " + (data.get("timeline") || ""),
-   "Project Details: " + (data.get("details") || "")
-  ].join("\n");
-  const url = "https://wa.me/923002867506?text=" + encodeURIComponent(message);
-  window.open(url, "_blank", "noopener");
- });
-}
-
-/* Footer year */
-const year = document.getElementById("year");
-if (year) year.textContent = new Date().getFullYear();
-
-/* Demo-only admin panel — client-side code is not secure authentication */
-const adminLogin = document.getElementById("adminLogin");
-const adminPanel = document.getElementById("adminPanel");
-const adminCode = document.getElementById("adminCode");
-const adminMessage = document.getElementById("adminMessage");
-const adminLogout = document.getElementById("adminLogout");
-const saveAnnouncement = document.getElementById("saveAnnouncement");
-const adminAnnouncement = document.getElementById("adminAnnouncement");
-const announcementPreview = document.getElementById("announcementPreview");
-
-if (adminLogin) {
- adminLogin.addEventListener("submit", event => {
-  event.preventDefault();
-  if (adminCode.value === "AZDAR-DEMO") {
-   adminPanel.hidden = false;
-   adminMessage.textContent = "Demo dashboard opened. This does not protect or manage a live website.";
-   adminCode.value = "";
-  } else {
-   adminMessage.textContent = "Code incorrect. Use the demo code shown above.";
-  }
- });
-}
-if (adminLogout) {
- adminLogout.addEventListener("click", () => {
-  adminPanel.hidden = true;
-  adminMessage.textContent = "Demo dashboard closed.";
- });
-}
-if (saveAnnouncement) {
- saveAnnouncement.addEventListener("click", () => {
-  const value = adminAnnouncement.value.trim();
-  announcementPreview.textContent = value || "No announcement entered.";
-  announcementPreview.style.display = "inline-flex";
-  adminMessage.textContent = "Local preview updated. This does not publish to other visitors.";
- });
-}
-
-/* Respect reduced-motion preferences */
-if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
- document.documentElement.style.scrollBehavior = "auto";
- document.querySelectorAll(".laptop,.orbit,.floating-chip,.float-icon").forEach(el => {
-  el.style.animation = "none";
- });
-}
-</script>
 <style>
-/* Responsive layout */
-label{display:block;font-size:.9rem;font-weight:700;margin-bottom:6px}
-input,select,textarea{
- width:100%;padding:13px 14px;background:#0b0d1c;color:var(--text);
- border:1px solid var(--line);border-radius:10px;outline:none
+/* Shared cards */
+.glass { background: linear-gradient(145deg,#151d35cc,#0e1427e8); border: 1px solid var(--line); border-radius: var(--radius); }
+.service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:17px; }
+.service-card { padding:25px; transition:transform .3s,border-color .3s,background .3s; }
+.service-card:hover,.project:hover,.price-card:hover { transform:translateY(-6px); border-color:#47eaff50; }
+.service-icon { display:grid; place-items:center; width:49px;height:49px;border-radius:14px;background:#47eaff12;border:1px solid #47eaff24;color:var(--cyan);font-size:25px; }
+.service-card h3,.project h3,.price-card h3 { margin:19px 0 7px;font-size:19px; }
+.service-card p,.project p,.price-card p { color:var(--muted);font-size:14px; }
+.text-link { display:inline-block;margin-top:12px;color:var(--cyan);font-size:13px;font-weight:800; }
+.alternate { background:linear-gradient(180deg,#10162a65,#10162a22);border-block:1px solid #ffffff06; }
+.portfolio-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px; }
+.project { overflow:hidden;transition:transform .3s,border-color .3s; }
+.project-art { height:225px;position:relative;overflow:hidden;display:grid;place-items:center; }
+.art-one { background:linear-gradient(135deg,#101b36,#255b70); }
+.art-window { width:67%;height:165px;padding:14px;background:#0b1120;border:1px solid #ffffff25;box-shadow:0 15px 45px #0005;transform:rotate(-4deg); }
+.art-window span { font-size:8px;letter-spacing:2px;color:var(--cyan); }
+.art-window b { display:block;font-size:23px;line-height:1.2;margin-top:12px; }
+.art-window em { color:var(--cyan);font-style:normal; }
+.art-window i { display:inline-block;width:45px;height:4px;background:#ffffff30;margin:10px 4px 0 0; }
+.art-two { background:radial-gradient(circle at 50% 40%,#5d2b81,#16122f 65%); }
+.product-shape { width:106px;height:130px;display:grid;place-items:center;font-size:62px;font-weight:900;color:#f2d8ff;background:linear-gradient(135deg,#ac82db,#322154);border:1px solid #ffffff60;box-shadow:15px 20px 45px #0006;transform:rotate(8deg); }
+.art-caption { position:absolute;bottom:13px;font-size:9px;letter-spacing:3px; }
+.art-three { background:linear-gradient(135deg,#112c3e,#15152e); }
+.dashboard { width:80%;height:145px;display:flex;padding:10px;background:#0c1425;border:1px solid #ffffff20;transform:rotate(3deg);box-shadow:0 20px 40px #0006; }
+.dash-sidebar { width:24%;border-right:1px solid #ffffff15;background:repeating-linear-gradient(180deg,#47eaff18 0 4px,transparent 4px 19px); }
+.dash-content { flex:1;padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px; }
+.dash-content i { height:20px;background:#47eaff19;border:1px solid #47eaff20;border-radius:4px; }
+.dash-chart { grid-column:1/-1;height:55px;border-bottom:2px solid var(--cyan);background:linear-gradient(160deg,transparent 35%,#47eaff20 36%,transparent 80%); }
+.project-info { display:flex;justify-content:space-between;align-items:center;padding:5px 20px 20px; }
+.project-info h3 { margin-bottom:0; }
+.project-info p { margin:4px 0 0;font-size:12px; }
+.project-num { color:var(--cyan);font-weight:900; }
+.small-note { font-size:12px;margin-top:20px; }
+.pricing-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;align-items:stretch; }
+.price-card { padding:27px 23px;display:flex;flex-direction:column;background:#11182b;border:1px solid var(--line);border-radius:var(--radius);transition:transform .3s,border-color .3s; }
+.price-card.featured { border-color:#47eaff65;background:linear-gradient(150deg,#163149,#17142f);box-shadow:0 15px 50px #47eaff0b; }
+.price-label { color:var(--cyan);font-size:10px;letter-spacing:2px;font-weight:900; }
+.price-card h3 { font-size:23px;margin:15px 0 0; }
+.price-value { font-size:28px;font-weight:900;margin:13px 0; }
+.price-value small { font-size:12px;color:var(--muted);font-weight:500; }
+.price-card ul { list-style:none;padding:0;margin:12px 0 24px;flex:1; }
+.price-card li { padding:8px 0;color:#d0d8e9;font-size:13px;border-bottom:1px solid #ffffff09; }
+.price-card li:before { content:"✓";color:var(--cyan);margin-right:9px; }
+.price-card .btn { width:100%; }
+.review-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px; }
+.review-card { padding:26px; }
+.review-symbol { font-size:31px;color:var(--cyan); }
+.review-card h3 { margin:5px 0 9px; }
+.review-card p { color:var(--muted);font-size:14px; }
+.review-caption { font-size:10px;letter-spacing:1.5px;color:#8593b2; }
+.process-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px; }
+.process-step { border-top:1px solid #47eaff60;padding:17px 12px 0 0; }
+.process-step>span { color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:2px; }
+.process-step h3 { font-size:16px;margin-bottom:7px; }
+.process-step p { font-size:13px; }
+.contact-grid { display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:start; }
+.contact-title { font-size:clamp(38px,5vw,57px);line-height:1.1;letter-spacing:-2px;margin:20px 0; }
+.contact-method { display:flex;gap:13px;align-items:center;margin-top:25px; }
+.contact-icon { display:grid;place-items:center;width:42px;height:42px;background:#47eaff12;border:1px solid #47eaff22;border-radius:12px;color:var(--cyan); }
+.contact-method b,.contact-method a,.contact-method span:not(.contact-icon) { display:block;font-size:13px; }
+.contact-method a,.contact-method span:not(.contact-icon) { color:var(--muted); }
+.order-form { padding:28px; }
+.order-form h3 { margin:0;font-size:24px; }
+.order-form label,.admin-dialog label { display:block;font-size:12px;font-weight:800;margin:16px 0 7px; }
+.order-form input,.order-form textarea,.order-form select,.admin-dialog input { width:100%;border:1px solid #ffffff18;border-radius:10px;background:#080d1b;color:var(--text);padding:13px;outline:none; }
+.order-form input:focus,.order-form textarea:focus,.order-form select:focus,.admin-dialog input:focus { border-color:var(--cyan); }
+.order-form textarea { resize:vertical; }
+.order-form select option { background:#10162a; }
+.form-submit { width:100%;margin-top:20px; }
+.form-note { font-size:11px;color:var(--muted); }
+.status-message { font-size:13px;color:var(--cyan); }
+.faq-list { max-width:820px; }
+.faq-list details { border-bottom:1px solid var(--line);padding:18px 0; }
+.faq-list summary { cursor:pointer;font-weight:800; }
+.faq-list details p { color:var(--muted);font-size:14px; }
+footer { padding:45px 0 20px;border-top:1px solid var(--line);background:#070a14; }
+.footer-main { display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px;padding-bottom:35px; }
+.footer-desc { max-width:310px;font-size:13px; }
+.footer-main h4 { margin:0 0 12px; }
+.footer-main>div:not(:first-child) a { display:block;color:var(--muted);font-size:13px;margin:8px 0; }
+.footer-bottom { display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:17px;font-size:11px;color:var(--muted); }
+.chat-launcher,.admin-launcher { position:fixed;z-index:150;bottom:20px;border:1px solid #ffffff22;border-radius:100px;background:linear-gradient(120deg,#47eaff,#a78bfa);color:#09101d;font-weight:900;box-shadow:0 8px 30px #0005; }
+.chat-launcher { right:20px;padding:13px 19px; }
+.chat-launcher span { font-size:12px; }
+.admin-launcher { left:16px;padding:9px 13px;font-size:11px;background:#171d32;color:var(--muted); }
+.chat-panel { position:fixed;z-index:160;right:18px;bottom:80px;width:min(350px,calc(100vw - 28px));height:430px;background:#0d1325;border:1px solid #ffffff20;border-radius:18px;box-shadow:0 25px 80px #000a;overflow:hidden;display:flex;flex-direction:column; }
+.chat-panel[hidden] { display:none; }
+.chat-head { display:flex;justify-content:space-between;align-items:center;padding:15px;background:#151e34;border-bottom:1px solid var(--line); }
+.chat-head small { display:block;font-size:11px;color:var(--muted); }
+.chat-head button { background:transparent;color:white;border:0;font-size:24px; }
+.chat-messages { flex:1;padding:13px;overflow:auto;display:flex;flex-direction:column;gap:10px; }
+.chat-bubble { max-width:88%;padding:11px 13px;border-radius:13px;font-size:13px;overflow-wrap:anywhere; }
+.chat-bubble.bot { background:#1a2540;align-self:flex-start; }
+.chat-bubble.user { background:#204a5b;align-self:flex-end; }
+.chat-input { display:flex;gap:7px;padding:10px;border-top:1px solid var(--line); }
+.chat-input input { min-width:0;flex:1;background:#080d1b;border:1px solid var(--line);border-radius:9px;color:white;padding:10px; }
+.chat-input button { width:40px;border:0;border-radius:9px;background:var(--cyan);color:#08101d; }
+.chat-disclaimer { margin:0;padding:0 12px 9px;color:var(--muted);font-size:10px; }
+.admin-dialog { width:min(620px,calc(100vw - 24px));max-height:85vh;overflow:auto;background:#0e1427;color:var(--text);border:1px solid #ffffff20;border-radius:18px;padding:24px; }
+.admin-dialog::backdrop { background:#030611c9;backdrop-filter:blur(5px); }
+.admin-top { display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.admin-top h2 { margin:12px 0 0; }
+.admin-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0; }
+.admin-stats .glass { padding:12px; }
+.admin-stats span,.admin-stats b { display:block;font-size:11px;overflow-wrap:anywhere; }
+.admin-stats span { color:var(--muted);margin-bottom:8px; }
+.admin-dialog hr { border:0;border-top:1px solid var(--line);margin:24px 0; }
+.reveal { opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease; }
+.reveal.visible { opacity:1;transform:translateY(0); }
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto!important;animation:none!important;transition:none!important; }
+  .reveal { opacity:1;transform:none; }
 }
-input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #42e8ff18}
-textarea{resize:vertical}
-[hidden]{display:none!important}
-@media(max-width:820px){
- .nav{min-height:68px;flex-wrap:wrap}
- .menu-toggle{display:inline-flex}
- .nav-links{
-  display:none;position:absolute;top:68px;left:0;right:0;padding:18px 5%;
-  flex-direction:column;align-items:stretch;gap:8px;background:#0b0d1c;
-  border-bottom:1px solid var(--line)
- }
- .nav-links.nav-open{display:flex}
- .nav-links a{padding:9px}
- .hero{min-height:auto;padding:65px 0 45px}
- .hero-grid{grid-template-columns:1fr;gap:20px}
- .hero h1{letter-spacing:-1.2px}
- .hero-visual{min-height:320px;margin-top:8px}
- .orbit{width:250px;height:250px}
- .laptop{width:min(88%,420px)}
- .floating-chip{font-size:.72rem}
- section{padding:65px 0}
- .hero-bottom{flex-wrap:wrap}
+@media(max-width:850px) {
+  .hero-grid { grid-template-columns:1fr;gap:15px; }
+  .hero { padding-top:65px; }
+  .hero-copy { max-width:700px; }
+  .visual { min-height:330px; }
+  .laptop { max-width:420px; }
+  .service-grid,.portfolio-grid,.pricing-grid,.review-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .contact-grid { grid-template-columns:1fr;gap:30px; }
+  .nav-links { gap:13px; }
 }
-@media(max-width:480px){
- .container{width:91%}
- .hero h1{font-size:2.65rem}
- .hero-copy{font-size:.95rem}
- .hero-visual{min-height:270px}
- .orbit{width:215px;height:215px}
- .laptop-screen{border-width:5px;padding:9px}
- .screen-art{height:48px}
- .card{padding:19px}
- .btn{padding:12px 15px}
- .hero-actions .btn{flex:1}
- .section-head{margin-bottom:28px}
-}
-@media(prefers-reduced-motion:reduce){
- *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
- .reveal{opacity:1;transform:none}
+@media(max-width:620px) {
+  .wrap { width:calc(100% - 30px); }
+  .nav { min-height:67px; }
+  .brand { font-size:13px;gap:8px; }
+  .brand-mark { width:38px;height:38px; }
+  .menu-toggle { display:block; }
+  .nav-links { display:none;position:absolute;top:67px;left:0;right:0;padding:18px 22px 22px;background:#0b1020;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0; }
+  .nav-links.open { display:flex; }
+  .nav-links a { padding:11px 0;border-bottom:1px solid #ffffff09; }
+  .hero { padding:55px 0 35px; }
+  .hero h1 { font-size:clamp(39px,12vw,56px);letter-spacing:-1.8px; }
+  .hero p { font-size:15px; }
+  .hero-actions .btn { flex:1; }
+  .stats { gap:8px; }
+  .stat strong { font-size:14px; }
+  .stat span { font-size:10px; }
+  .visual { min-height:285px; }
+  .laptop-screen { padding:10px;border-width:4px; }
+  .mock-title { font-size:18px; }
+  .mock-card { padding:10px; }
+  .float-tag { font-size:10px;padding:9px; }
+  .tag-one { top:18px; }
+  .tag-two { bottom:20px; }
+  section { padding:57px 0; }
+  .section-head h2 { font-size:31px; }
+  .service-grid,.portfolio-grid,.pricing-grid,.review-grid { grid-template-columns:1fr; }
+  .service-card,.price-card,.review-card { padding:22px; }
+  .project-art { height:215px; }
+  .process-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 15px; }
+  .contact-title { font-size:42px; }
+  .order-form { padding:20px; }
+  .footer-main { grid-template-columns:1fr 1fr;gap:25px; }
+  .footer-main>div:first-child { grid-column:1/-1; }
+  .footer-bottom { gap:9px; }
+  .admin-stats { grid-template-columns:1fr; }
+  .chat-launcher { right:12px;bottom:16px;padding:12px 15px; }
+  .admin-launcher { left:10px;bottom:16px; }
 }
 </style>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  // Mobile navigation
+  const menuToggle = $("#menuToggle");
+  const navLinks = $("#navLinks");
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "×" : "☰";
+  });
+  $$("#navLinks a").forEach(link => link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "☰";
+  }));
+
+  // Scroll reveal: graceful fallback if IntersectionObserver is unavailable.
+  const revealItems = $$(
+    ".service-card,.project,.price-card,.review-card,.process-step,.section-head,.order-form,.faq-list"
+  );
+  if ("IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    revealItems.forEach(el => el.classList.add("reveal"));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach(el => observer.observe(el));
+  }
+
+  $("#year").textContent = new Date().getFullYear();
+
+  // Service and pricing buttons prefill the inquiry form.
+  function prefillService(value) {
+    const select = $("#clientService");
+    const option = [...select.options].find(item =>
+      item.value === value || item.textContent.trim() === value
+    );
+    if (option) select.value = option.value;
+    $("#contact").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => $("#clientName").focus({ preventScroll: true }), 450);
+  }
+  $$("[data-service]").forEach(link => link.addEventListener("click", () => {
+    prefillService(link.dataset.service);
+  }));
+  $$(".choose-plan").forEach(button => button.addEventListener("click", () => {
+    const plan = button.dataset.plan;
+    const select = $("#clientService");
+    const mapping = {
+      "Landing Page": "Custom Website",
+      "Business Website": "Website Development",
+      "Shopify Store Design": "Shopify Store Design"
+    };
+    prefillService(mapping[plan] || plan);
+    $("#clientDetails").value = "I'm interested in the " + plan + " package. Please discuss the scope and quote with me.";
+  }));
+
+  // Prepare a WhatsApp message. Nothing is submitted automatically.
+  $("#orderForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const service = String(data.get("service") || "").trim();
+    const budget = String(data.get("budget") || "").trim();
+    const details = String(data.get("details") || "").trim();
+
+    if (!name || !service || !details) {
+      $("#formStatus").textContent = "Please complete all required fields.";
+      return;
+    }
+    const message = [
+      "Hello AzDar Web Studio!",
+      "",
+      "Project Inquiry",
+      "Name: " + name,
+      email ? "Email: " + email : "",
+      "Service: " + service,
+      "Budget: " + budget,
+      "Project details: " + details
+    ].filter(Boolean).join("\n");
+
+    $("#formStatus").textContent = "WhatsApp is opening. Review your message and press Send there.";
+    window.open("https://wa.me/923002867506?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+  });
+
+  // Chat demo: simulated replies only; no real agent or server connection.
+  const chatPanel = $("#chatPanel");
+  const chatLauncher = $("#chatLauncher");
+  function toggleChat(show) {
+    chatPanel.hidden = !show;
+    chatLauncher.setAttribute("aria-expanded", String(show));
+    if (show) $("#chatText").focus();
+  }
+  chatLauncher.addEventListener("click", () => toggleChat(chatPanel.hidden));
+  $("#chatClose").addEventListener("click", () => toggleChat(false));
+
+  function addBubble(text, type) {
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble " + type;
+    bubble.textContent = text;
+    $("#chatMessages").appendChild(bubble);
+    $("#chatMessages").scrollTop = $("#chatMessages").scrollHeight;
+  }
+  $("#chatForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const field = $("#chatText");
+    const message = field.value.trim();
+    if (!message) return;
+    addBubble(message, "user");
+    field.value = "";
+    const lower = message.toLowerCase();
+    let reply = "Thanks for your message! Please use the project inquiry form or contact our team on WhatsApp for a personalised response.";
+    if (lower.includes("price") || lower.includes("cost") || lower.includes("budget")) {
+      reply = "Project prices depend on the scope and features. Please submit the inquiry form to request a tailored quote.";
+    } else if (lower.includes("shopify") || lower.includes("store")) {
+      reply = "We can discuss Shopify storefront design. Please tell us about your products and the features you need.";
+    } else if (lower.includes("website")) {
+      reply = "We offer business websites, custom pages and responsive website design. Use the project form to tell us about your idea.";
+    }
+    window.setTimeout(() => addBubble(reply, "bot"), 350);
+  });
+
+  // Admin preview: deliberately not a secure or persistent admin system.
+  const adminDialog = $("#adminDialog");
+  $("#adminLauncher").addEventListener("click", () => adminDialog.showModal());
+  $("#adminClose").addEventListener("click", () => adminDialog.close());
+
+  $("#adminSave").addEventListener("click", () => {
+    const name = $("#adminStudioName").value.trim() || "AzDar Web Studio";
+    const tagline = $("#adminTagline").value.trim() || "Your Vision, Our Code";
+    const email = $("#adminEmail").value.trim();
+    const phone = $("#adminPhone").value.replace(/\D/g, "");
+
+    if (!/^[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email)) {
+      $("#adminStatus").textContent = "Please enter a valid email address.";
+      return;
+    }
+    if (phone.length < 10 || phone.length > 15) {
+      $("#adminStatus").textContent = "Enter a valid international phone number.";
+      return;
+    }
+    $$(".brand").forEach(brand => {
+      const label = brand.querySelector("span:nth-child(2)");
+      if (label) {
+        label.firstChild.textContent = name;
+        const small = label.querySelector("small");
+        if (small) small.textContent = tagline.toUpperCase();
+      }
+    });
+    const mail = document.querySelector('a[href^="mailto:"]');
+    if (mail) {
+      mail.href = "mailto:" + email;
+      mail.textContent = email;
+    }
+    $$('a[href*="wa.me/"]').forEach(link => {
+      link.href = "https://wa.me/" + phone;
+    });
+    $("#adminStatus").textContent = "Applied to this page only. Refreshing will reset these demo changes.";
+  });
+
+  $("#adminPriceSave").addEventListener("click", () => {
+    const values = [
+      ["#adminStarter", 0],
+      ["#adminBusiness", 1],
+      ["#adminShopify", 2]
+    ];
+    values.forEach(([inputSelector, index]) => {
+      const value = $(inputSelector).value.trim();
+      if (value) {
+        const target = $$(".price-value")[index];
+        target.replaceChildren(document.createTextNode(value));
+      }
+    });
+    $("#adminStatus").textContent = "Displayed prices updated for this preview only. Refreshing resets the changes.";
+  });
+})();
+</script>
 </body>
 </html>
